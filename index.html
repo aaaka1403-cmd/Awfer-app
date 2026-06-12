@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>أوفر — مقارنة أسعار التوصيل</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Tajawal',sans-serif;background:#F7F7F9;direction:rtl;}
+.app{max-width:430px;margin:0 auto;min-height:100vh;position:relative;}
+
+/* Header */
+.header{background:linear-gradient(160deg,#0A3D20,#1A6635,#145229);padding:20px 16px 28px;position:relative;overflow:hidden;}
+.header::before{content:'';position:absolute;top:-60px;left:-60px;width:200px;height:200px;border-radius:50%;background:rgba(240,208,96,0.06);}
+.top-bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;position:relative;z-index:2;}
+.logo-wrap{display:flex;align-items:center;gap:10px;}
+.logo-text{color:white;font-weight:900;font-size:22px;line-height:1;}
+.logo-text span{color:#F0D060;}
+.logo-sub{color:rgba(255,255,255,0.4);font-size:10px;letter-spacing:2px;text-transform:uppercase;margin-top:2px;}
+.login-btn{background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.15);border-radius:12px;padding:8px 14px;color:white;font-size:13px;font-weight:700;cursor:pointer;font-family:'Tajawal',sans-serif;}
+
+/* Toggle */
+.toggle-wrap{background:rgba(255,255,255,0.1);border-radius:14px;padding:4px;display:flex;gap:4px;margin-bottom:16px;position:relative;z-index:2;}
+.toggle-btn{flex:1;padding:9px 0;border-radius:11px;border:none;cursor:pointer;font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:center;gap:6px;transition:all .2s;font-family:'Tajawal',sans-serif;}
+.toggle-btn.active{background:white;color:#0A3D20;box-shadow:0 2px 8px rgba(0,0,0,0.15);}
+.toggle-btn.inactive{background:transparent;color:rgba(255,255,255,0.6);}
+
+/* Search */
+.search-wrap{background:white;border-radius:16px;display:flex;align-items:center;padding:4px 4px 4px 14px;box-shadow:0 8px 32px rgba(0,0,0,0.25);position:relative;z-index:2;}
+.search-wrap input{border:none;background:transparent;flex:1;font-size:14px;color:#333;direction:rtl;padding:11px 0;font-family:'Tajawal',sans-serif;outline:none;}
+.search-btn{background:linear-gradient(135deg,#0A3D20,#1A6635);border:none;border-radius:12px;padding:11px 18px;color:white;font-size:14px;font-weight:800;cursor:pointer;font-family:'Tajawal',sans-serif;}
+
+/* Cities */
+.cities{display:flex;gap:8px;margin-top:14px;overflow-x:auto;position:relative;z-index:2;}
+.city-btn{background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.7);border:none;border-radius:20px;padding:6px 16px;font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap;font-family:'Tajawal',sans-serif;transition:all .2s;}
+.city-btn.active{background:#F0D060;color:#0A3D20;}
+
+/* Banner */
+.banner{margin:14px 14px 0;border-radius:18px;background:linear-gradient(135deg,#0A3D20,#1A6635);padding:15px 18px;display:flex;align-items:center;gap:14px;border:1px solid rgba(240,208,96,0.3);}
+.banner-num{color:#F0D060;font-weight:900;font-size:20px;margin-top:1px;}
+.banner-label{color:rgba(255,255,255,0.7);font-size:12px;}
+
+/* Apps bar */
+.section{padding:16px 14px 0;}
+.section-title{font-weight:800;font-size:14px;margin-bottom:12px;color:#111;}
+.apps-bar{display:flex;gap:10px;overflow-x:auto;}
+.app-icon{display:flex;flex-direction:column;align-items:center;gap:5px;flex-shrink:0;}
+.app-logo{width:48px;height:48px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;color:white;box-shadow:0 2px 10px rgba(0,0,0,0.12);}
+.app-name{font-size:10px;font-weight:700;color:#666;white-space:nowrap;}
+
+/* Categories */
+.cats{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;}
+.cat-btn{display:flex;flex-direction:column;align-items:center;gap:5px;padding:12px 14px;background:white;border-radius:14px;border:1.5px solid #F0F0F0;cursor:pointer;flex-shrink:0;min-width:66px;box-shadow:0 2px 8px rgba(0,0,0,0.05);font-family:'Tajawal',sans-serif;}
+.cat-icon{font-size:24px;}
+.cat-name{font-size:11px;font-weight:700;color:#444;white-space:nowrap;}
+
+/* Restaurant cards */
+.rest-list{padding:16px 14px 100px;}
+.rest-card{background:white;border-radius:18px;overflow:hidden;box-shadow:0 2px 14px rgba(0,0,0,0.08);margin-bottom:12px;cursor:pointer;border:1px solid rgba(0,0,0,0.04);}
+.rest-cover{height:120px;position:relative;display:flex;align-items:center;justify-content:center;}
+.rest-emoji{font-size:52px;filter:drop-shadow(0 4px 12px rgba(0,0,0,0.3));}
+.rest-badge{position:absolute;top:10px;right:10px;background:#22C55E;color:white;border-radius:20px;padding:3px 10px;font-size:10px;font-weight:800;}
+.rest-eta{position:absolute;bottom:10px;left:10px;background:rgba(0,0,0,0.45);backdrop-filter:blur(6px);color:white;border-radius:10px;padding:3px 10px;font-size:11px;font-weight:700;}
+.rest-body{padding:12px 14px;}
+.rest-row{display:flex;justify-content:space-between;align-items:flex-start;}
+.rest-name{font-weight:800;font-size:16px;color:#111;}
+.rest-meta{font-size:12px;color:#888;margin-top:2px;}
+.rest-price-box{background:#FFF5F5;border-radius:10px;padding:6px 10px;text-align:center;}
+.rest-price{font-weight:900;font-size:18px;color:#E63946;line-height:1;}
+.rest-price-label{font-size:9px;color:#aaa;}
+.rest-tags{display:flex;gap:5px;margin-top:8px;flex-wrap:wrap;}
+.tag{background:#F0FFF4;color:#166534;border-radius:20px;padding:2px 9px;font-size:10px;font-weight:700;}
+
+/* Apps bottom */
+.rest-apps{display:flex;justify-content:space-between;align-items:center;margin-top:10px;padding-top:10px;border-top:1px solid #F5F5F5;}
+.rest-apps-label{font-size:11px;color:#888;}
+.rest-apps-dots{display:flex;gap:4px;}
+.app-dot{width:26px;height:26px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:900;color:white;}
+
+/* Bottom nav */
+.bottom-nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;background:white;border-top:1px solid #F0F0F0;z-index:100;display:flex;justify-content:space-around;padding:10px 0 12px;box-shadow:0 -4px 20px rgba(0,0,0,0.08);}
+.nav-item{background:none;border:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:3px;padding:3px 14px;font-family:'Tajawal',sans-serif;}
+.nav-icon{font-size:22px;}
+.nav-label{font-size:10px;font-weight:700;}
+.nav-item.active .nav-label{color:#0A3D20;}
+.nav-item .nav-label{color:#aaa;}
+.nav-bar{position:absolute;top:-10px;width:28px;height:3px;background:#0A3D20;border-radius:0 0 4px 4px;}
+</style>
+</head>
+<body>
+<div class="app">
+  <!-- Header -->
+  <div class="header">
+    <div class="top-bar">
+      <div class="logo-wrap">
+        <svg width="42" height="42" viewBox="0 0 120 120">
+          <defs>
+            <linearGradient id="lg" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#0A3D20"/>
+              <stop offset="100%" stop-color="#1A6635"/>
+            </linearGradient>
+            <linearGradient id="gg" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#C8A200"/>
+              <stop offset="100%" stop-color="#F0D060"/>
+            </linearGradient>
+          </defs>
+          <path d="M60 6 L108 24 L108 66 Q108 96 60 114 Q12 96 12 66 L12 24 Z" fill="url(#lg)"/>
+          <path d="M60 11 L103 28 L103 66 Q103 93 60 109 Q17 93 17 66 L17 28 Z" fill="none" stroke="url(#gg)" stroke-width="2" opacity="0.7"/>
+          <path d="M60 26 L84 82 L75 82 L68 64 L52 64 L45 82 L36 82 Z" fill="white"/>
+          <rect x="52" y="57" width="16" height="5.5" fill="#0A3D20" rx="1.5"/>
+          <circle cx="60" cy="22" r="3.5" fill="url(#gg)"/>
+        </svg>
+        <div>
+          <div class="logo-text"><span>A</span>wfer</div>
+          <div class="logo-sub">Delivery & Savings Hub</div>
+        </div>
+      </div>
+      <button class="login-btn">دخول</button>
+    </div>
+
+    <!-- Toggle -->
+    <div class="toggle-wrap">
+      <button class="toggle-btn active" onclick="setMode('delivery',this)">🛵 توصيل</button>
+      <button class="toggle-btn inactive" onclick="setMode('pickup',this)">🏃 استلام</button>
+    </div>
+
+    <!-- Search -->
+    <div class="search-wrap">
+      <span style="font-size:17px;color:#aaa;margin-left:8px;">🔍</span>
+      <input placeholder="ابحث عن مطعم أو وجبة..." id="searchInput" oninput="filterRests()"/>
+      <button class="search-btn">بحث</button>
+    </div>
+
+    <!-- Cities -->
+    <div class="cities">
+      <button class="city-btn active" onclick="setCity('الرياض',this)">الرياض</button>
+      <button class="city-btn" onclick="setCity('جدة',this)">جدة</button>
+      <button class="city-btn" onclick="setCity('الدمام',this)">الدمام</button>
+      <button class="city-btn" onclick="setCity('الكل',this)">الكل</button>
+    </div>
+  </div>
+
+  <!-- Banner -->
+  <div class="banner">
+    <svg width="44" height="44" viewBox="0 0 120 120">
+      <defs>
+        <linearGradient id="lg2" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#0A3D20"/>
+          <stop offset="100%" stop-color="#1A6635"/>
+        </linearGradient>
+        <linearGradient id="gg2" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#C8A200"/>
+          <stop offset="100%" stop-color="#F0D060"/>
+        </linearGradient>
+      </defs>
+      <path d="M60 6 L108 24 L108 66 Q108 96 60 114 Q12 96 12 66 L12 24 Z" fill="url(#lg2)"/>
+      <path d="M60 26 L84 82 L75 82 L68 64 L52 64 L45 82 L36 82 Z" fill="white"/>
+      <rect x="52" y="57" width="16" height="5.5" fill="#0A3D20" rx="1.5"/>
+    </svg>
+    <div>
+      <div class="banner-label">وفّرنا على مستخدمينا هذا الشهر</div>
+      <div class="banner-num">2,847,320 ريال</div>
+    </div>
+  </div>
+
+  <!-- Apps -->
+  <div class="section">
+    <div class="section-title">نقارن بين أفضل التطبيقات</div>
+    <div class="apps-bar">
+      <div class="app-icon"><div class="app-logo" style="background:#FF5A00;">H</div><div class="app-name">هنقريستيشن</div></div>
+      <div class="app-icon"><div class="app-logo" style="background:#E60000;">K</div><div class="app-name">كيتا</div></div>
+      <div class="app-icon"><div class="app-logo" style="background:#003087;">ج</div><div class="app-name">جاهز</div></div>
+      <div class="app-icon"><div class="app-logo" style="background:#00A651;">م</div><div class="app-name">مرسول</div></div>
+      <div class="app-icon"><div class="app-logo" style="background:#C8A200;color:#111;">N</div><div class="app-name">نون فود</div></div>
+    </div>
+  </div>
+
+  <!-- Categories -->
+  <div class="section">
+    <div class="section-title">تصفح حسب الفئة</div>
+    <div class="cats">
+      <button class="cat-btn"><span class="cat-icon">🍔</span><span class="cat-name">برجر</span></button>
+      <button class="cat-btn"><span class="cat-icon">🍕</span><span class="cat-name">بيتزا</span></button>
+      <button class="cat-btn"><span class="cat-icon">🌮</span><span class="cat-name">شاورما</span></button>
+      <button class="cat-btn"><span class="cat-icon">🍗</span><span class="cat-name">دجاج</span></button>
+      <button class="cat-btn"><span class="cat-icon">🍣</span><span class="cat-name">سوشي</span></button>
+      <button class="cat-btn"><span class="cat-icon">☕</span><span class="cat-name">قهوة</span></button>
+      <button class="cat-btn"><span class="cat-icon">🍩</span><span class="cat-name">حلويات</span></button>
+      <button class="cat-btn"><span class="cat-icon">🥗</span><span class="cat-name">صحي</span></button>
+    </div>
+  </div>
+
+  <!-- Restaurants -->
+  <div class="rest-list" id="restList">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+      <div style="font-weight:800;font-size:14px;color:#111;">🔥 الأكثر طلباً</div>
+    </div>
+  </div>
+
+  <!-- Bottom Nav -->
+  <div class="bottom-nav">
+    <button class="nav-item active">
+      <div class="nav-bar"></div>
+      <span class="nav-icon">🏠</span>
+      <span class="nav-label" style="color:#0A3D20;">الرئيسية</span>
+    </button>
+    <button class="nav-item">
+      <span class="nav-icon">🔍</span>
+      <span class="nav-label">بحث</span>
+    </button>
+    <button class="nav-item">
+      <span class="nav-icon">🔔</span>
+      <span class="nav-label">تنبيهاتي</span>
+    </button>
+    <button class="nav-item">
+      <span class="nav-icon">👤</span>
+      <span class="nav-label">حسابي</span>
+    </button>
+  </div>
+</div>
+
+<script>
+const RESTAURANTS = [
+  {id:1,name:"البيك",cat:"دجاج",rating:4.9,reviews:112,emoji:"🍗",color:"#C8102E",tags:["الأكثر طلباً"],eta:"20-30",minPrice:32,apps:["hunger","keeta","jahez","marsool"],free:false},
+  {id:2,name:"ماكدونالدز",cat:"برجر",rating:4.5,reviews:89,emoji:"🍔",color:"#FFC72C",tags:["24 ساعة"],eta:"15-25",minPrice:28,apps:["hunger","keeta","jahez","marsool","noon"],free:true},
+  {id:3,name:"ستاربكس",cat:"قهوة",rating:4.4,reviews:88,emoji:"☕",color:"#00704A",tags:["قهوة مميزة"],eta:"20-35",minPrice:22,apps:["hunger","keeta","jahez","marsool"],free:false},
+  {id:4,name:"بيتزا هت",cat:"بيتزا",rating:4.3,reviews:55,emoji:"🍕",color:"#EE3124",tags:["عروض العائلة"],eta:"30-45",minPrice:58,apps:["hunger","keeta","jahez","marsool","noon"],free:true},
+  {id:5,name:"كنتاكي",cat:"دجاج",rating:4.4,reviews:67,emoji:"🍗",color:"#E4002B",tags:["كلاسيك"],eta:"20-30",minPrice:32,apps:["hunger","keeta","jahez","marsool","noon"],free:false},
+  {id:6,name:"شاورمر",cat:"شاورما",rating:4.5,reviews:62,emoji:"🌮",color:"#E63946",tags:["الأكثر طلباً"],eta:"15-25",minPrice:18,apps:["hunger","keeta","jahez","marsool","noon"],free:true},
+  {id:7,name:"برجر كينج",cat:"برجر",rating:4.3,reviews:54,emoji:"🍔",color:"#FF8732",tags:["واوبر أصلي"],eta:"20-35",minPrice:30,apps:["hunger","keeta","jahez","marsool","noon"],free:false},
+  {id:8,name:"دومينوز",cat:"بيتزا",rating:4.2,reviews:43,emoji:"🍕",color:"#006491",tags:["ضمان 30 دقيقة"],eta:"25-35",minPrice:48,apps:["hunger","keeta","jahez","marsool","noon"],free:true},
+  {id:9,name:"سوشي سا",cat:"سوشي",rating:4.7,reviews:22,emoji:"🍣",color:"#1A237E",tags:["طازج يومياً"],eta:"35-50",minPrice:48,apps:["hunger","keeta","marsool","noon"],free:false},
+  {id:10,name:"باسكن روبنز",cat:"حلويات",rating:4.5,reviews:42,emoji:"🍦",color:"#F9A7C0",tags:["31 نكهة"],eta:"20-30",minPrice:45,apps:["hunger","keeta","jahez","marsool","noon"],free:false},
+];
+
+const APP_COLORS = {hunger:"#FF5A00",keeta:"#E60000",jahez:"#003087",marsool:"#00A651",noon:"#C8A200"};
+const APP_LABELS = {hunger:"H",keeta:"K",jahez:"ج",marsool:"م",noon:"N"};
+
+let currentMode = "delivery";
+let currentCity = "الرياض";
+
+function renderRests(data) {
+  const list = document.getElementById("restList");
+  const header = list.firstElementChild;
+  list.innerHTML = "";
+  list.appendChild(header);
+  data.forEach(r => {
+    const price = currentMode === "pickup" ? r.minPrice : r.minPrice + 5;
+    const card = document.createElement("div");
+    card.className = "rest-card";
+    card.innerHTML = `
+      <div class="rest-cover" style="background:linear-gradient(135deg,${r.color}dd,${r.color}88)">
+        <span class="rest-emoji">${r.emoji}</span>
+        ${r.free ? '<div class="rest-badge">🛵 مجاني</div>' : ""}
+        <div class="rest-eta">⏱ ${r.eta} د</div>
+      </div>
+      <div class="rest-body">
+        <div class="rest-row">
+          <div>
+            <div class="rest-name">${r.name}</div>
+            <div class="rest-meta">⭐${r.rating} · ${r.reviews}k · ${r.cat}</div>
+          </div>
+          <div class="rest-price-box">
+            <div class="rest-price-label">يبدأ</div>
+            <div class="rest-price">${price}</div>
+            <div class="rest-price-label">ر.س</div>
+          </div>
+        </div>
+        <div class="rest-tags">
+          ${r.tags.map(t=>`<span class="tag">${t}</span>`).join("")}
+        </div>
+        <div class="rest-apps">
+          <div class="rest-apps-label">متوفر في</div>
+          <div class="rest-apps-dots">
+            ${r.apps.map(a=>`<div class="app-dot" style="background:${APP_COLORS[a]}">${APP_LABELS[a]}</div>`).join("")}
+          </div>
+        </div>
+      </div>`;
+    list.appendChild(card);
+  });
+}
+
+function setMode(mode, btn) {
+  currentMode = mode;
+  document.querySelectorAll(".toggle-btn").forEach(b => {
+    b.className = "toggle-btn inactive";
+  });
+  btn.className = "toggle-btn active";
+  renderRests(RESTAURANTS);
+}
+
+function setCity(city, btn) {
+  currentCity = city;
+  document.querySelectorAll(".city-btn").forEach(b => b.classList.remove("active"));
+  btn.classList.add("active");
+  renderRests(RESTAURANTS);
+}
+
+function filterRests() {
+  const q = document.getElementById("searchInput").value.toLowerCase();
+  const filtered = RESTAURANTS.filter(r =>
+    r.name.includes(q) || r.cat.includes(q)
+  );
+  renderRests(filtered);
+}
+
+renderRests(RESTAURANTS);
+</script>
+</body>
+</html>
