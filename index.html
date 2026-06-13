@@ -43,11 +43,17 @@ body{font-family:'Tajawal',sans-serif;background:var(--beige);color:var(--text);
 .city{padding:6px 14px;border:none;border-radius:20px;font-family:'Tajawal',sans-serif;font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap;background:rgba(255,255,255,.13);color:rgba(255,255,255,.75);transition:all .2s;}
 .city.active{background:var(--gold);color:var(--g1);}
 
+/* LOADING */
+.loading{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:60px 20px;gap:12px;}
+.loading-spinner{width:44px;height:44px;border:4px solid var(--beige2);border-top:4px solid var(--g1);border-radius:50%;animation:spin .8s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loading p{font-size:14px;color:var(--muted);}
+
 /* SAVINGS */
 .savings{margin:14px 16px;background:var(--g1);border-radius:16px;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;border:1px solid rgba(201,168,76,.2);}
 .sav-txt p{font-size:11px;color:rgba(255,255,255,.6);margin-bottom:2px;}
 .sav-txt h3{font-size:20px;font-weight:900;color:var(--gold);}
-.sav-ico{width:44px;height:44px;border-radius:12px;background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.25);display:flex;align-items:center;justify-content:center;overflow:hidden;}
+.sav-ico{width:44px;height:44px;border-radius:12px;background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.25);overflow:hidden;display:flex;align-items:center;justify-content:center;}
 .sav-ico img{width:100%;height:100%;object-fit:contain;}
 
 /* PLATFORMS */
@@ -62,7 +68,7 @@ body{font-family:'Tajawal',sans-serif;background:var(--beige);color:var(--text);
 .sec{padding:0 16px;margin-bottom:20px;}
 .sec-ttl{font-size:17px;font-weight:800;margin-bottom:12px;}
 
-/* RESTAURANT CARDS */
+/* RESTAURANT */
 .rest-grid{display:flex;flex-direction:column;gap:12px;}
 .rest-card{background:#fff;border-radius:18px;overflow:hidden;cursor:pointer;box-shadow:0 2px 12px rgba(26,77,46,.07);transition:transform .15s;}
 .rest-card:active{transform:scale(0.98);}
@@ -119,7 +125,7 @@ body{font-family:'Tajawal',sans-serif;background:var(--beige);color:var(--text);
 @keyframes up{from{transform:translateY(100%)}to{transform:translateY(0)}}
 .m-handle{width:36px;height:4px;background:#ddd;border-radius:2px;margin:0 auto 16px;}
 .modal-ttl{font-size:18px;font-weight:900;margin-bottom:4px;}
-.modal-sub{font-size:12px;color:var(--muted);margin-bottom:14px;line-height:1.5;}
+.modal-sub{font-size:12px;color:var(--muted);margin-bottom:14px;}
 
 /* ORDER BOX */
 .order-box{background:var(--beige3);border-radius:14px;padding:14px;margin-bottom:14px;}
@@ -135,7 +141,7 @@ body{font-family:'Tajawal',sans-serif;background:var(--beige);color:var(--text);
 .o-sub-lbl{font-size:13px;font-weight:800;color:var(--g1);}
 .o-sub-val{font-size:15px;font-weight:900;color:var(--g1);}
 
-/* FEE DISCLAIMER */
+/* DISCLAIMER */
 .fee-disclaimer{background:#fffbe6;border:1px solid #f0d060;border-radius:10px;padding:10px 12px;margin-bottom:14px;font-size:11px;color:#7a6000;line-height:1.6;}
 
 /* PLATFORMS */
@@ -149,27 +155,19 @@ body{font-family:'Tajawal',sans-serif;background:var(--beige);color:var(--text);
 .pr-name{font-size:15px;font-weight:800;}
 .pr-total{font-size:21px;font-weight:900;}
 .pr-total.green{color:var(--g1);}
-
-/* BREAKDOWN TABLE */
 .bk-table{width:100%;border-collapse:collapse;margin-bottom:8px;}
 .bk-table td{padding:4px 0;font-size:12px;vertical-align:middle;}
 .bk-table td:last-child{text-align:left;font-weight:700;}
 .bk-lbl{color:var(--muted);}
-.bk-val{}
 .bk-val.green{color:var(--g2);font-weight:800;}
 .bk-divider td{border-top:1px dashed var(--beige2);padding-top:6px;}
 .bk-bold td{font-weight:800;font-size:13px;}
 .bk-eta td{color:var(--muted);font-size:11px;}
-
-/* MIN ORDER WARNING */
 .min-warn{display:flex;align-items:center;gap:6px;background:#fff8e1;border:1px solid #f0c040;border-radius:8px;padding:7px 10px;font-size:11px;color:#7a5c00;margin-bottom:8px;}
-
-/* ORDER BTN */
-.order-btn{display:flex;align-items:center;justify-content:center;gap:6px;width:100%;padding:12px;border:none;border-radius:12px;font-family:'Tajawal',sans-serif;font-size:14px;font-weight:800;cursor:pointer;text-decoration:none;transition:transform .15s;}
+.order-btn{display:flex;align-items:center;justify-content:center;gap:6px;width:100%;padding:12px;border:none;border-radius:12px;font-family:'Tajawal',sans-serif;font-size:14px;font-weight:800;cursor:pointer;text-decoration:none;transition:transform .15s;margin-top:8px;}
 .order-btn:active{transform:scale(0.97);}
 .order-btn.primary{background:var(--g1);color:#fff;}
 .order-btn.secondary{background:var(--beige2);color:var(--text);}
-
 .close-btn{width:100%;background:var(--g1);color:#fff;border:none;border-radius:14px;padding:14px;font-family:'Tajawal',sans-serif;font-size:16px;font-weight:700;cursor:pointer;}
 
 /* NAV */
@@ -178,11 +176,16 @@ body{font-family:'Tajawal',sans-serif;background:var(--beige);color:var(--text);
 .nav-i .ic{font-size:21px;}
 .nav-i .lb{font-size:11px;font-weight:600;color:#aaa;}
 .nav-i.active .lb{color:var(--g1);}
+
+/* DATA STATUS */
+.data-status{display:flex;align-items:center;gap:6px;padding:6px 12px;border-radius:20px;font-size:11px;font-weight:600;margin:0 16px 12px;width:fit-content;}
+.data-status.live{background:#edf7f1;color:var(--g2);}
+.data-status.cached{background:#fff8e1;color:#7a5c00;}
 </style>
 </head>
 <body>
 
-<!-- ══ SCREEN 1 ══ -->
+<!-- SCREEN 1 -->
 <div class="screen active" id="s1">
   <div class="hdr">
     <div class="hdr-top">
@@ -215,6 +218,8 @@ body{font-family:'Tajawal',sans-serif;background:var(--beige);color:var(--text);
     </div>
   </div>
 
+  <div id="dataStatus"></div>
+
   <div class="savings">
     <div class="sav-txt">
       <p id="lbl-saved">وفّرنا على مستخدمينا هذا الشهر</p>
@@ -237,11 +242,13 @@ body{font-family:'Tajawal',sans-serif;background:var(--beige);color:var(--text);
 
   <div class="sec">
     <div class="sec-ttl" id="lbl-choose">🍽️ اختر مطعمك</div>
-    <div class="rest-grid" id="restGrid"></div>
+    <div class="rest-grid" id="restGrid">
+      <div class="loading"><div class="loading-spinner"></div><p id="lbl-loading">جاري تحميل البيانات...</p></div>
+    </div>
   </div>
 </div>
 
-<!-- ══ SCREEN 2 ══ -->
+<!-- SCREEN 2 -->
 <div class="screen" id="s2">
   <div class="hdr">
     <div class="hdr-top">
@@ -282,7 +289,7 @@ body{font-family:'Tajawal',sans-serif;background:var(--beige);color:var(--text);
 
 <!-- MODAL -->
 <div class="overlay" id="overlay" onclick="outsideClose(event)">
-  <div class="modal" id="modal">
+  <div class="modal">
     <div class="m-handle"></div>
     <div class="modal-ttl" id="lbl-modal-ttl">مقارنة الأسعار 📊</div>
     <div class="modal-sub" id="lbl-modal-sub">اختر التطبيق المناسب لك</div>
@@ -294,142 +301,181 @@ body{font-family:'Tajawal',sans-serif;background:var(--beige);color:var(--text);
   </div>
 </div>
 
+<!-- WAFFIR AI MODAL -->
+<div class="overlay" id="waffirOverlay" onclick="closeWaffir(event)">
+  <div class="modal" id="waffirModal">
+    <div class="m-handle"></div>
+    <div id="waffirIntro">
+      <div style="text-align:center;padding:10px 0 20px;">
+        <div style="width:72px;height:72px;background:linear-gradient(135deg,#1a4d2e,#2a6e42);border-radius:20px;margin:0 auto 12px;display:flex;align-items:center;justify-content:center;font-size:36px;">🤖</div>
+        <h2 style="font-size:22px;font-weight:900;color:var(--g1);margin-bottom:6px;">وفّر</h2>
+        <p style="font-size:13px;color:var(--muted);">مستشارك الذكي للتوصيل</p>
+      </div>
+      <div style="background:var(--beige3);border-radius:16px;padding:16px;margin-bottom:20px;">
+        <div style="display:flex;align-items:flex-start;gap:10px;">
+          <div style="width:36px;height:36px;background:var(--g1);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;">🤖</div>
+          <div style="background:#fff;border-radius:12px;padding:12px;font-size:14px;line-height:1.6;flex:1;">مرحباً! أنا وفّر 👋<br>أساعدك تختار أفضل وجبة بميزانيتك من أوفر تطبيق توصيل. فقط أجب على 4 أسئلة سريعة!</div>
+        </div>
+      </div>
+      <button onclick="startWaffir()" style="width:100%;background:var(--g1);color:#fff;border:none;border-radius:14px;padding:14px;font-family:Tajawal,sans-serif;font-size:16px;font-weight:800;cursor:pointer;">ابدأ 🚀</button>
+    </div>
+    <div id="waffirQuestions" style="display:none;">
+      <div style="margin-bottom:20px;">
+        <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:6px;">
+          <span id="wStep">السؤال 1 من 4</span>
+          <span id="wStepName">الميزانية</span>
+        </div>
+        <div style="background:var(--beige2);border-radius:10px;height:6px;"><div id="wProgress" style="background:var(--g1);height:6px;border-radius:10px;transition:width .3s;width:25%;"></div></div>
+      </div>
+      <div id="wChatArea" style="display:flex;flex-direction:column;gap:12px;margin-bottom:16px;"></div>
+      <div id="wOptionsArea"></div>
+    </div>
+    <div id="waffirResult" style="display:none;">
+      <div style="text-align:center;margin-bottom:20px;">
+        <div style="font-size:48px;margin-bottom:8px;">🎯</div>
+        <h2 style="font-size:20px;font-weight:900;color:var(--g1);" id="wResultTitle"></h2>
+        <p style="font-size:13px;color:var(--muted);margin-top:4px;" id="wResultSub"></p>
+      </div>
+      <div id="wMeals" style="margin-bottom:14px;"></div>
+      <div id="wPlatform" style="margin-bottom:14px;"></div>
+      <div style="background:var(--beige3);border-radius:14px;padding:14px;margin-bottom:16px;">
+        <div style="display:flex;align-items:flex-start;gap:10px;">
+          <div style="width:36px;height:36px;background:var(--g1);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;">🤖</div>
+          <div style="background:#fff;border-radius:12px;padding:12px;font-size:13px;line-height:1.6;flex:1;" id="wMessage"></div>
+        </div>
+      </div>
+      <div style="display:flex;gap:8px;">
+        <button onclick="resetWaffir()" style="flex:1;background:var(--beige2);color:var(--text);border:none;border-radius:12px;padding:13px;font-family:Tajawal,sans-serif;font-size:14px;font-weight:700;cursor:pointer;">🔄 من جديد</button>
+        <button onclick="closeWaffirBtn()" style="flex:1;background:var(--g1);color:#fff;border:none;border-radius:12px;padding:13px;font-family:Tajawal,sans-serif;font-size:15px;font-weight:800;cursor:pointer;">حسناً ✓</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- WAFFIR FLOAT BTN -->
+<button onclick="openWaffir()" style="position:fixed;bottom:80px;left:16px;width:56px;height:56px;background:linear-gradient(135deg,#1a4d2e,#2a6e42);border:none;border-radius:50%;font-size:26px;cursor:pointer;box-shadow:0 4px 20px rgba(26,77,46,.4);z-index:99;display:flex;align-items:center;justify-content:center;" title="وفّر - مستشارك الذكي">🤖</button>
+
 <!-- NAV -->
 <div class="nav">
   <div class="nav-i active" onclick="goHome()"><div class="ic">🏠</div><div class="lb" id="nav1">الرئيسية</div></div>
-  <div class="nav-i"><div class="ic">🔍</div><div class="lb" id="nav2">بحث</div></div>
+  <div class="nav-i" onclick="openWaffir()"><div class="ic">🤖</div><div class="lb" id="nav2">وفّر AI</div></div>
   <div class="nav-i"><div class="ic">🔔</div><div class="lb" id="nav3">تنبيهاتي</div></div>
   <div class="nav-i"><div class="ic">👤</div><div class="lb" id="nav4">حسابي</div></div>
 </div>
 
 <script>
-const GH='https://raw.githubusercontent.com/aaaka1403-cmd/Awfer-app/main/';
+// ══ GOOGLE SHEETS CONFIG ══
+const API_URL = 'https://script.google.com/macros/s/AKfycbx_clsLpQ9-QIqwV5OKGjJYXFL73jh4N1y1tLTeaWSal74c66po6twLt2i8C6QwXwbP/exec';
 
-// ══ PLATFORMS ══
-const PL={
-  hs:     {ar:'هنقرستيشن',en:'HungerStation',color:'#c0392b',fee_normal:11,fee_disc:11,min_order:15,eta_ar:'35-50 د',eta_en:'35-50 min',link:'https://hungerstation.go.link/?c=SA&s=c&v=19824&so=mls&adj_t=1sdhhuza_1spi9ypp&adj_og_title=%D8%A7%D9%84%D8%A8%D9%8A%D9%83&adj_og_image=https://images.deliveryhero.io/image/hungerstation/restaurant/logo_ar/e2792c2827639ba97a708e7a6ae5a2a8.png'},
+  
+
+// ══ FALLBACK DATA (يعمل لو فشل Sheets) ══
+const GH = 'https://raw.githubusercontent.com/aaaka1403-cmd/Awfer-app/main/';
+const FALLBACK_PL = {
+  hs:     {ar:'هنقرستيشن',en:'HungerStation',color:'#c0392b',fee_normal:11,fee_disc:11,min_order:15,eta_ar:'35-50 د',eta_en:'35-50 min',link:'https://hungerstation.go.link/?c=SA&s=c&v=19824&so=mls&adj_t=1sdhhuza_1spi9ypp&adj_og_title=%D8%A7%D9%84%D8%A8%D9%8A%D9%83'},
   keeta:  {ar:'كيتا',en:'Keeta',color:'#1a5276',fee_normal:13,fee_disc:9,min_order:30,eta_ar:'17 د',eta_en:'17 min',link:'https://url.mykeeta.com/bBw7jcKz'},
   toyou:  {ar:'تويو',en:'ToYou',color:'#0d6e5e',fee_normal:25,fee_disc:9,min_order:55,eta_ar:'44-53 د',eta_en:'44-53 min',link:'https://toyou.io/merchant/31c591b0-ee20-4bbe-8f68-05d3df4111bf'},
   mandoob:{ar:'مستر مندوب',en:'Mr Mandoob',color:'#16a28a',fee_normal:23,fee_disc:23,min_order:0,eta_ar:'25-35 د',eta_en:'25-35 min',link:'https://mrmandoob.com/store/2598'},
 };
+const FALLBACK_RESTAURANTS=[{id:'albaik',ar:'البيك',en:'Al Baik',cat_ar:'دجاج',cat_en:'Chicken',img:'https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?w=600&q=80'}];
+
+// ══ STATE ══
+let lang='ar', mode='delivery', currentCat='all';
+let PL={}, RESTAURANTS=[], MEALS=[], dataSource='loading';
+const cart={};
 
 // ══ TRANSLATIONS ══
 const TR={
-  ar:{
-    del:'🛵 توصيل',pic:'🏃 استلام',saved:'وفّرنا على مستخدمينا هذا الشهر',
-    compare:'نقارن بين هذه المنصات',choose:'🍽️ اختر مطعمك',
-    saveUpto:'🔥 وفّر حتى',sarS:'ر.س',
-    addBtn:'+ أضف',addedBtn:'✓ مضاف',
-    cartCount:'وجبة مختارة',bestPrice:'قارن الأسعار 📊',advisorBtn:'عرض المقارنة',
-    modalTtl:'مقارنة الأسعار 📊',modalSub:'اختر التطبيق المناسب لك',
-    orderSummary:'ملخص طلبك',subtotal:'مجموع الوجبات',
-    compareTtl:'الأسعار على جميع التطبيقات',
-    disclaimer:'⚠️ رسوم الخدمة غير معروضة وتتراوح بين 0.5 و5 ريال إضافية حسب سياسة التطبيق وقيمة طلبك.',
-    meals:'الوجبات',delivery:'التوصيل',total:'الإجمالي',eta:'وقت التوصيل',
-    minWarn:'أضف',minWarn2:'ر.س للحصول على خصم التوصيل',
-    orderNow:'اطلب الآن →',notAvail:'غير متوفر على هذا التطبيق',
-    close:'إغلاق',
-    navHome:'الرئيسية',navSearch:'بحث',navNotif:'تنبيهاتي',navAcc:'حسابي',
-    langBtn:'EN',dir:'rtl',lang:'ar',
-    restPH:'ابحث عن مطعم...',mealPH:'ابحث عن وجبة...',
-    beforeDel:'(قبل التوصيل)',priceRng:'السعر',
-  },
-  en:{
-    del:'🛵 Delivery',pic:'🏃 Pickup',saved:'Saved for our users this month',
-    compare:'We compare these platforms',choose:'🍽️ Choose restaurant',
-    saveUpto:'🔥 Save up to',sarS:'SAR',
-    addBtn:'+ Add',addedBtn:'✓ Added',
-    cartCount:'items selected',bestPrice:'Compare Prices 📊',advisorBtn:'Compare',
-    modalTtl:'Price Comparison 📊',modalSub:'Choose the app that suits you',
-    orderSummary:'Your Order',subtotal:'Meals subtotal',
-    compareTtl:'Prices on all platforms',
-    disclaimer:'⚠️ Service fees are not displayed and may range between 0.5–5 SAR depending on the platform policy and your order value.',
-    meals:'Meals',delivery:'Delivery',total:'Total',eta:'Delivery time',
-    minWarn:'Add',minWarn2:'SAR more for delivery discount',
-    orderNow:'Order now →',notAvail:'Not available on this platform',
-    close:'Close',
-    navHome:'Home',navSearch:'Search',navNotif:'Alerts',navAcc:'Account',
-    langBtn:'عربي',dir:'ltr',lang:'en',
-    restPH:'Search restaurants...',mealPH:'Search meals...',
-    beforeDel:'(before delivery)',priceRng:'Price',
-  }
+  ar:{del:'🛵 توصيل',pic:'🏃 استلام',saved:'وفّرنا على مستخدمينا هذا الشهر',compare:'نقارن بين هذه المنصات',choose:'🍽️ اختر مطعمك',saveUpto:'🔥 وفّر حتى',sarS:'ر.س',addBtn:'+ أضف',addedBtn:'✓ مضاف',cartCount:'وجبة مختارة',bestPrice:'قارن الأسعار 📊',advisorBtn:'عرض المقارنة',modalTtl:'مقارنة الأسعار 📊',modalSub:'اختر التطبيق المناسب لك',orderSummary:'ملخص طلبك',subtotal:'مجموع الوجبات',compareTtl:'الأسعار على جميع التطبيقات',disclaimer:'⚠️ رسوم الخدمة غير معروضة وتتراوح بين 0.5 و5 ريال إضافية حسب سياسة التطبيق وقيمة طلبك.',meals:'الوجبات',delivery:'التوصيل',total:'الإجمالي',eta:'وقت التوصيل',minWarn:'أضف',minWarn2:'ر.س للحصول على خصم التوصيل',orderNow:'اطلب الآن →',notAvail:'غير متوفر',close:'إغلاق',navHome:'الرئيسية',navSearch:'بحث',navNotif:'تنبيهاتي',navAcc:'حسابي',langBtn:'EN',dir:'rtl',lang:'ar',restPH:'ابحث عن مطعم...',mealPH:'ابحث عن وجبة...',beforeDel:'(قبل التوصيل)',priceRng:'السعر',loading:'جاري تحميل البيانات...',liveData:'🟢 بيانات محدّثة',cachedData:'🟡 بيانات محلية'},
+  en:{del:'🛵 Delivery',pic:'🏃 Pickup',saved:'Saved for our users this month',compare:'We compare these platforms',choose:'🍽️ Choose restaurant',saveUpto:'🔥 Save up to',sarS:'SAR',addBtn:'+ Add',addedBtn:'✓ Added',cartCount:'items selected',bestPrice:'Compare Prices 📊',advisorBtn:'Compare',modalTtl:'Price Comparison 📊',modalSub:'Choose the app that suits you',orderSummary:'Your Order',subtotal:'Meals subtotal',compareTtl:'Prices on all platforms',disclaimer:'⚠️ Service fees are not displayed and may range between 0.5–5 SAR depending on the platform policy and your order value.',meals:'Meals',delivery:'Delivery',total:'Total',eta:'Delivery time',minWarn:'Add',minWarn2:'SAR more for delivery discount',orderNow:'Order now →',notAvail:'Not available',close:'Close',navHome:'Home',navSearch:'Search',navNotif:'Alerts',navAcc:'Account',langBtn:'عربي',dir:'ltr',lang:'en',restPH:'Search restaurants...',mealPH:'Search meals...',beforeDel:'(before delivery)',priceRng:'Price',loading:'Loading data...',liveData:'🟢 Live data',cachedData:'🟡 Local data'},
 };
 
-let lang='ar',mode='delivery',currentCat='all';
-const cart={};
+const CATS=[{id:'all',ar:'الكل',en:'All',icon:'🍽️'},{id:'chicken',ar:'دجاج',en:'Chicken',icon:'🍗'},{id:'sandwiches',ar:'ساندويشات',en:'Sandwiches',icon:'🥪'},{id:'seafood',ar:'مأكولات بحرية',en:'Seafood',icon:'🦐'},{id:'sides',ar:'جانبية',en:'Sides',icon:'🍟'},{id:'desserts',ar:'حلويات',en:'Desserts',icon:'🍦'},{id:'drinks',ar:'مشروبات',en:'Drinks',icon:'🥤'}];
+const FALLBACK_IMG={chicken:'https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?w=400&q=80',sandwiches:'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&q=80',seafood:'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400&q=80',sides:'https://images.unsplash.com/photo-1576107232684-1279f390859f?w=400&q=80',desserts:'https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=400&q=80',drinks:'https://images.unsplash.com/photo-1554866585-cd94860890b7?w=400&q=80'};
+
 function t(k){return TR[lang][k]||k;}
-function plN(pid){return lang==='ar'?PL[pid].ar:PL[pid].en;}
-function plEta(pid){return lang==='ar'?PL[pid].eta_ar:PL[pid].eta_en;}
+function plN(pid){return PL[pid]?(lang==='ar'?PL[pid].ar:PL[pid].en):pid;}
+function plEta(pid){return PL[pid]?(lang==='ar'?PL[pid].eta_ar:PL[pid].eta_en):'';}
 
-// ══ RESTAURANTS ══
-const RESTAURANTS=[
-  {id:'albaik',ar:'البيك',en:'Al Baik',cat_ar:'دجاج',cat_en:'Chicken',
-   img:'https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?w=600&q=80'},
-];
+// ══ PARSE CSV ══
+function parseCSV(csv){
+  const lines=csv.trim().split('\n');
+  const headers=lines[0].split(',').map(h=>h.replace(/"/g,'').trim());
+  return lines.slice(1).filter(l=>l.trim()).map(line=>{
+    const vals=[];let cur='',inQ=false;
+    for(const ch of line){if(ch==='"'){inQ=!inQ;}else if(ch===','&&!inQ){vals.push(cur.trim());cur='';}else cur+=ch;}
+    vals.push(cur.trim());
+    const obj={};
+    headers.forEach((h,i)=>obj[h]=vals[i]||'');
+    return obj;
+  });
+}
 
-// ══ MEALS ══
-const MEALS=[
-  {id:'ch4',   ar:'وجبة دجاج البيك 4 قطع',       en:'Al Baik Chicken Meal 4pc',       cat:'chicken',    img:GH+'chicken-meal-4pc.jpg',          prices:{hs:22,   keeta:22,   toyou:22,   mandoob:18}},
-  {id:'ch4h',  ar:'وجبة دجاج البيك حراق 4 قطع',   en:'Spicy Chicken Meal 4pc',         cat:'chicken',    img:GH+'chicken-meal-4pc.jpg',          prices:{hs:22,   keeta:22,   toyou:22,   mandoob:18}},
-  {id:'ch8',   ar:'وجبة دجاج البيك 8 قطع',        en:'Al Baik Chicken Meal 8pc',       cat:'chicken',    img:GH+'chicken-meal-8pc.jpg',          prices:{hs:null, keeta:42,   toyou:null, mandoob:35}},
-  {id:'ms10',  ar:'وجبة دجاج مسحب 10 قطع',        en:'Chicken Nuggets Meal 10pc',      cat:'chicken',    img:GH+'chicken-meal-8pc.jpg',          prices:{hs:22,   keeta:22,   toyou:22,   mandoob:18}},
-  {id:'ms7',   ar:'وجبة دجاج مسحب 7 قطع',         en:'Chicken Nuggets Meal 7pc',       cat:'chicken',    img:GH+'chicken-meal-4pc.jpg',          prices:{hs:20,   keeta:20,   toyou:20,   mandoob:15}},
-  {id:'cfb',   ar:'برجر فيليه دجاج',              en:'Chicken Fillet Burger',          cat:'sandwiches', img:GH+'chicken-fillet-burger.jpg',     prices:{hs:7,    keeta:7,    toyou:6.5,  mandoob:5.5}},
-  {id:'cfbh',  ar:'برجر فيليه دجاج حراق',         en:'Spicy Chicken Fillet Burger',    cat:'sandwiches', img:GH+'chicken-fillet-burger.jpg',     prices:{hs:7,    keeta:7,    toyou:7,    mandoob:5.5}},
-  {id:'bigb',  ar:'بيج بيك',                      en:'Big Baik',                       cat:'sandwiches', img:GH+'big-baik.jpg',                  prices:{hs:null, keeta:null, toyou:16,   mandoob:null}},
-  {id:'bigbh', ar:'بيج بيك حراق',                 en:'Big Baik Spicy',                 cat:'sandwiches', img:GH+'big-baik.jpg',                  prices:{hs:17.5, keeta:17.5, toyou:16,   mandoob:null}},
-  {id:'bigbc', ar:'بيج بيك بالجبنة',              en:'Big Baik with Cheese',           cat:'sandwiches', img:GH+'big-baik-cheese.jpg',           prices:{hs:null, keeta:18,   toyou:null, mandoob:16}},
-  {id:'dbl',   ar:'دبل بيك',                      en:'Double Baik',                    cat:'sandwiches', img:GH+'double-baik.jpg',               prices:{hs:10.5, keeta:10.5, toyou:10,   mandoob:9}},
-  {id:'crbk',  ar:'كرسبي بيك فيليه',              en:'Crispy Baik Fillet',             cat:'sandwiches', img:GH+'chicken-fillet-sandwich.jpg',   prices:{hs:8,    keeta:8,    toyou:8,    mandoob:null}},
-  {id:'cfs',   ar:'ساندويش فيليه الدجاج',         en:'Chicken Fillet Sandwich',        cat:'sandwiches', img:GH+'chicken-fillet-sandwich.jpg',   prices:{hs:10.5, keeta:10.5, toyou:9.5,  mandoob:7.5}},
-  {id:'twk',   ar:'طاووق',                        en:'Tawuk',                          cat:'sandwiches', img:GH+'tawook.jpg',                    prices:{hs:10.5, keeta:10.5, toyou:null, mandoob:7.5}},
-  {id:'shwg',  ar:'شاورما البيك بصلصة الثوم',     en:'Shawarma with Garlic Sauce',     cat:'sandwiches', img:GH+'shawarma-garlic.jpg',           prices:{hs:8.5,  keeta:8.5,  toyou:7.5,  mandoob:6}},
-  {id:'shwt',  ar:'شاورما البيك بصلصة الطحينة',   en:'Shawarma with Tahini Sauce',     cat:'sandwiches', img:GH+'shawarma-tahini.jpg',           prices:{hs:8.5,  keeta:8.5,  toyou:null, mandoob:6}},
-  {id:'sajd',  ar:'صاج دي لايت',                  en:'Saj DeLite',                     cat:'sandwiches', img:GH+'saj-d-lite.jpg',                prices:{hs:10.5, keeta:10.5, toyou:null, mandoob:7.5}},
-  {id:'supg',  ar:'سوبر بيك دجاج مشوي',           en:'Super Baik Grilled Chicken',     cat:'sandwiches', img:GH+'super-baik-grilled-chicken.jpg',prices:{hs:19.5, keeta:19.5, toyou:19.5, mandoob:15}},
-  {id:'bkzc',  ar:'بيكيز صدور الدجاج',            en:'Baikeez Chest',                  cat:'sandwiches', img:GH+'chicken-meal-4pc.jpg',          prices:{hs:null, keeta:16.5, toyou:15.5, mandoob:13}},
-  {id:'fsb',   ar:'برجر فيليه سمك',               en:'Fish Fillet Burger',             cat:'seafood',    img:GH+'fish-fillet-sandwich.jpg',      prices:{hs:8.5,  keeta:8.5,  toyou:7.5,  mandoob:null}},
-  {id:'fss',   ar:'ساندويش فيليه سمك',            en:'Fish Fillet Sandwich',           cat:'seafood',    img:GH+'fish-fillet-sandwich.jpg',      prices:{hs:12,   keeta:12,   toyou:11,   mandoob:8.5}},
-  {id:'fsm',   ar:'وجبة فيليه السمك',             en:'Fish Fillet Meal',               cat:'seafood',    img:GH+'fish-fillet-meal.jpg',          prices:{hs:null, keeta:30.5, toyou:28.5, mandoob:24.5}},
-  {id:'shs',   ar:'ساندويش جمبري',                en:'Shrimp Sandwich',                cat:'seafood',    img:GH+'shrimp-sandwich.jpg',           prices:{hs:16,   keeta:16,   toyou:15,   mandoob:11.5}},
-  {id:'shsp',  ar:'ساندويش جمبري سوبر بيك',       en:'Super Baik Shrimp',              cat:'seafood',    img:GH+'super-baik-shrimp.jpg',         prices:{hs:24.5, keeta:24.5, toyou:24.5, mandoob:20.5}},
-  {id:'shv',   ar:'وجبة الجمبري الاقتصادية',      en:'Value Shrimp Meal',              cat:'seafood',    img:GH+'economy-shrimp-meal.jpg',       prices:{hs:null, keeta:29.5, toyou:28.5, mandoob:24}},
-  {id:'sh10',  ar:'وجبة الجمبري الجامبو 10 قطع',  en:'Jumbo Shrimp Meal 10pc',         cat:'seafood',    img:GH+'economy-shrimp-meal.jpg',       prices:{hs:null, keeta:38.5, toyou:37.5, mandoob:32}},
-  {id:'sh12',  ar:'وجبة الجمبري الجامبو 12 قطعة', en:'Jumbo Shrimp Meal 12pc',         cat:'seafood',    img:GH+'economy-shrimp-meal.jpg',       prices:{hs:null, keeta:51.5, toyou:50.5, mandoob:43.5}},
-  {id:'fry',   ar:'بطاطس',                        en:'French Fries',                   cat:'sides',      img:GH+'fries.jpg',                     prices:{hs:7,    keeta:7,    toyou:6.5,  mandoob:4}},
-  {id:'fryg',  ar:'بطاطس مع صلصة ثوم',            en:'Fries with Garlic Sauce',        cat:'sides',      img:GH+'fries-garlic-sauce.jpg',        prices:{hs:null, keeta:null, toyou:7.5,  mandoob:5}},
-  {id:'chips', ar:'شيبس البيك',                   en:'Baik Chips',                     cat:'sides',      img:GH+'baik-chips.jpg',                prices:{hs:7,    keeta:7,    toyou:6.5,  mandoob:4}},
-  {id:'corn',  ar:'ذرة',                          en:'Corn on the Cob',                cat:'sides',      img:GH+'corn-cob.jpg',                  prices:{hs:8,    keeta:8,    toyou:7.5,  mandoob:6}},
-  {id:'corncup',ar:'كوب الذرة',                   en:'Corn in a Cup',                  cat:'sides',      img:GH+'corn-cup.jpg',                  prices:{hs:8,    keeta:8,    toyou:7.5,  mandoob:6}},
-  {id:'hms',   ar:'حمص',                          en:'Hummus',                         cat:'sides',      img:GH+'hummus.jpg',                    prices:{hs:7,    keeta:7,    toyou:6.5,  mandoob:5}},
-  {id:'cls',   ar:'سلطة ملفوف',                   en:'Coleslaw',                       cat:'sides',      img:GH+'coleslaw.jpg',                  prices:{hs:7,    keeta:7,    toyou:6.5,  mandoob:5}},
-  {id:'snk',   ar:'سناك دجاج مسحب',               en:'Chicken Nugget Snack',           cat:'sides',      img:GH+'chicken-snack.jpg',             prices:{hs:7,    keeta:6.5,  toyou:6.5,  mandoob:5}},
-  {id:'snk5',  ar:'سناك دجاج مسحب 5 قطع',         en:'Nugget Snack 5pc',               cat:'sides',      img:GH+'chicken-snack-5pc.jpg',         prices:{hs:7,    keeta:6.5,  toyou:6.5,  mandoob:5}},
-  {id:'brd',   ar:'خبز',                          en:'Bread Buns',                     cat:'sides',      img:GH+'bread.jpg',                     prices:{hs:2,    keeta:2,    toyou:2,    mandoob:1.25}},
-  {id:'gsc',   ar:'صلصة ثوم',                     en:'Garlic Sauce',                   cat:'sides',      img:GH+'garlic-sauce.jpg',              prices:{hs:2,    keeta:2,    toyou:1.5,  mandoob:1}},
-  {id:'csc',   ar:'صلصة كوكتيل',                  en:'Cocktail Sauce',                 cat:'sides',      img:GH+'cocktail-sauce.jpg',            prices:{hs:2.5,  keeta:2.5,  toyou:2,    mandoob:1.75}},
-  {id:'mml',   ar:'معمول البيك',                  en:'Al Baik Maamoul',                cat:'desserts',   img:'https://images.unsplash.com/photo-1607920591413-4ec007e70023?w=400&q=80',prices:{hs:null,keeta:null,toyou:1.5,mandoob:0.5}},
-  {id:'icec',  ar:'آيس كريم شوكولاته',            en:'Chocolate Ice Cream',            cat:'desserts',   img:GH+'ice-cream-chocolate.jpg',       prices:{hs:null, keeta:null, toyou:null, mandoob:2.5}},
-  {id:'ices',  ar:'آيس كريم فراولة',              en:'Strawberry Ice Cream',           cat:'desserts',   img:GH+'ice-cream-strawberry.jpg',      prices:{hs:null, keeta:null, toyou:null, mandoob:2.5}},
-  {id:'pep',   ar:'بيبسي',                        en:'Pepsi',                          cat:'drinks',     img:'https://images.unsplash.com/photo-1629203851122-3726ecdf080e?w=400&q=80',prices:{hs:4.5,keeta:4.5,toyou:4,mandoob:3.5}},
-  {id:'7up',   ar:'سفن أب',                       en:'Seven Up',                       cat:'drinks',     img:GH+'7up.jpg',                       prices:{hs:4.5,  keeta:4.5,  toyou:4,    mandoob:3.5}},
-  {id:'mir',   ar:'ميرندا',                       en:'Mirinda',                        cat:'drinks',     img:'https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=400&q=80',prices:{hs:4.5,keeta:4,toyou:4,mandoob:3.5}},
-  {id:'lpt',   ar:'ليبتون آيس تي ليمون',          en:'Lipton Ice Tea Lemon',           cat:'drinks',     img:'https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=400&q=80',prices:{hs:5.5,keeta:5,toyou:5,mandoob:4}},
-  {id:'ljc',   ar:'عصير تفاح',                    en:'Apple Juice',                    cat:'drinks',     img:GH+'apple-juice.jpg',               prices:{hs:3.5,  keeta:null, toyou:3,    mandoob:3}},
-  {id:'wtr',   ar:'ماء',                          en:'Water',                          cat:'drinks',     img:GH+'water.jpg',                     prices:{hs:2,    keeta:2,    toyou:2,    mandoob:1}},
-];
+// ══ LOAD FROM APPS SCRIPT API ══
+async function loadFromSheets(){
+  try{
+    const [platRows, restRows, mealRows] = await Promise.all([
+      fetch(API_URL+'?sheet=platforms').then(r=>r.json()),
+      fetch(API_URL+'?sheet=restaurant').then(r=>r.json()),
+      fetch(API_URL+'?sheet=meals').then(r=>r.json()),
+    ]);
 
-const CATS=[
-  {id:'all',ar:'الكل',en:'All',icon:'🍽️'},
-  {id:'chicken',ar:'دجاج',en:'Chicken',icon:'🍗'},
-  {id:'sandwiches',ar:'ساندويشات',en:'Sandwiches',icon:'🥪'},
-  {id:'seafood',ar:'مأكولات بحرية',en:'Seafood',icon:'🦐'},
-  {id:'sides',ar:'جانبية',en:'Sides',icon:'🍟'},
-  {id:'desserts',ar:'حلويات',en:'Desserts',icon:'🍦'},
-  {id:'drinks',ar:'مشروبات',en:'Drinks',icon:'🥤'},
-];
+    // Parse platforms
+    const platRowsData=platRows;
+    PL={};
+    platRowsData.filter(r=>r.id).forEach(r=>{
+      PL[r.id]={
+        ar:r.name_ar, en:r.name_en, color:r.color,
+        fee_normal:+r.fee_normal||0, fee_disc:+r.fee_disc||0,
+        min_order:+r.min_order||0,
+        eta_ar:r.eta_ar, eta_en:r.eta_en, link:r.link
+      };
+    });
 
-const FALLBACK={chicken:'https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?w=400&q=80',sandwiches:'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&q=80',seafood:'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400&q=80',sides:'https://images.unsplash.com/photo-1576107232684-1279f390859f?w=400&q=80',desserts:'https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=400&q=80',drinks:'https://images.unsplash.com/photo-1554866585-cd94860890b7?w=400&q=80'};
+    RESTAURANTS=restRows.filter(r=>r.id).map(r=>({
+      id:r.id, ar:r.name_ar, en:r.name_en,
+      cat_ar:r.category_ar, cat_en:r.category_en, img:r.image_url
+    }));
+
+    MEALS=mealRows.filter(r=>r.id).map(r=>({
+      id:r.id, ar:r.name_ar, en:r.name_en,
+      cat:r.category, img:r.image_url,
+      prices:{
+        hs:      r.hs      ? +r.hs      : null,
+        keeta:   r.keeta   ? +r.keeta   : null,
+        toyou:   r.toyou   ? +r.toyou   : null,
+        mandoob: r.mandoob ? +r.mandoob : null,
+      }
+    }));
+
+    dataSource='live';
+    showDataStatus();
+    renderRestaurants();
+
+  } catch(e){
+    console.log('API error, using fallback:', e);
+    useFallback();
+  }
+}
+
+function useFallback(){
+  PL=FALLBACK_PL;
+  RESTAURANTS=FALLBACK_RESTAURANTS;
+  // استخدم البيانات المدمجة
+  MEALS=FALLBACK_MEALS;
+  dataSource='cached';
+  showDataStatus();
+  renderRestaurants();
+}
+
+function showDataStatus(){
+  const el=document.getElementById('dataStatus');
+  if(dataSource==='live'){
+    el.innerHTML=`<div class="data-status live">${t('liveData')}</div>`;
+  } else {
+    el.innerHTML=`<div class="data-status cached">${t('cachedData')}</div>`;
+  }
+}
 
 // ══ LANG ══
 function toggleLang(){lang=lang==='ar'?'en':'ar';applyLang();}
@@ -454,6 +500,8 @@ function applyLang(){
   document.getElementById('nav2').textContent=d.navSearch;
   document.getElementById('nav3').textContent=d.navNotif;
   document.getElementById('nav4').textContent=d.navAcc;
+  document.getElementById('lbl-loading').textContent=d.loading;
+  showDataStatus();
   renderRestaurants();
   if(document.getElementById('s2').classList.contains('active'))renderMeals();
 }
@@ -461,13 +509,13 @@ function applyLang(){
 // ══ DELIVERY FEE ══
 function getDeliveryFee(pid,mealsTotal){
   if(mode==='pickup')return 0;
-  const p=PL[pid];
+  const p=PL[pid];if(!p)return 0;
   return mealsTotal>=p.min_order?p.fee_disc:p.fee_normal;
 }
 function getMinGap(pid,mealsTotal){
   if(mode==='pickup')return 0;
-  const p=PL[pid];
-  if(p.min_order===0||mealsTotal>=p.min_order)return 0;
+  const p=PL[pid];if(!p||p.min_order===0)return 0;
+  if(mealsTotal>=p.min_order)return 0;
   return +(p.min_order-mealsTotal).toFixed(1);
 }
 function calcTotal(pid){
@@ -490,22 +538,24 @@ function updateCartBar(){
   if(n>0){bar.classList.add('show');document.getElementById('cartCount').textContent=n+' '+t('cartCount');}
   else bar.classList.remove('show');
 }
-function priceRange(m){const v=Object.values(m.prices).filter(x=>x!==null);return v.length?{min:Math.min(...v),max:Math.max(...v)}:null;}
+function priceRange(m){const v=Object.values(m.prices).filter(x=>x!==null&&x!==undefined);return v.length?{min:Math.min(...v),max:Math.max(...v)}:null;}
 
-// ══ S1 ══
 function setMode(m){mode=m;document.getElementById('btnD').classList.toggle('active',m==='delivery');document.getElementById('btnP').classList.toggle('active',m==='pickup');}
 function setCity(el){document.querySelectorAll('.city').forEach(b=>b.classList.remove('active'));el.classList.add('active');}
 
+// ══ S1 ══
 function renderRestaurants(){
+  if(!RESTAURANTS.length)return;
   const q=(document.getElementById('restSearch').value||'').toLowerCase();
   let maxSave=0;
   MEALS.forEach(m=>{
-    const vals=Object.entries(m.prices).filter(([,v])=>v!==null).map(([pid,v])=>v+(mode==='delivery'?PL[pid].fee_disc:0));
+    const pids=Object.keys(PL);
+    const vals=pids.map(pid=>m.prices[pid]).filter(v=>v!==null&&v!==undefined);
     if(vals.length>=2)maxSave=Math.max(maxSave,+(Math.max(...vals)-Math.min(...vals)).toFixed(1));
   });
   document.getElementById('restGrid').innerHTML=RESTAURANTS.filter(r=>!q||r.ar.includes(q)||r.en.toLowerCase().includes(q)).map(r=>`
     <div class="rest-card" onclick="openRestaurant('${r.id}')">
-      <div class="rest-img"><img src="${r.img}" onerror="this.src='${FALLBACK.chicken}'"><div class="rest-overlay"></div></div>
+      <div class="rest-img"><img src="${r.img}" onerror="this.src='${FALLBACK_IMG.chicken}'"><div class="rest-overlay"></div></div>
       <div class="rest-body">
         <div class="rest-top">
           <div><div class="rest-name">${lang==='ar'?r.ar:r.en}</div><div class="rest-cat">${lang==='ar'?r.cat_ar:r.cat_en}</div></div>
@@ -527,7 +577,8 @@ function showScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classL
 
 // ══ S2 ══
 function renderCats(){
-  document.getElementById('catsList').innerHTML=CATS.map(c=>`
+  const cats=['all',...new Set(MEALS.map(m=>m.cat))];
+  document.getElementById('catsList').innerHTML=CATS.filter(c=>cats.includes(c.id)).map(c=>`
     <div class="cat ${c.id===currentCat?'active':''}" onclick="setCat('${c.id}')">
       <div class="cat-ic">${c.icon}</div><span>${lang==='ar'?c.ar:c.en}</span>
     </div>`).join('');
@@ -541,8 +592,9 @@ function renderMeals(){
   document.getElementById('mealsList').innerHTML=filtered.map(m=>{
     const rng=priceRange(m);const qty=cart[m.id]||0;
     const catObj=CATS.find(c=>c.id===m.cat);
+    const fb=FALLBACK_IMG[m.cat]||FALLBACK_IMG.chicken;
     return`<div class="meal-card">
-      <div class="meal-img-w"><img src="${m.img}" onerror="this.src='${FALLBACK[m.cat]||FALLBACK.chicken}'"><div class="meal-badge">${lang==='ar'?catObj?.ar:catObj?.en}</div></div>
+      <div class="meal-img-w"><img src="${m.img}" onerror="this.src='${fb}'"><div class="meal-badge">${lang==='ar'?catObj?.ar:catObj?.en}</div></div>
       <div class="meal-body">
         <div class="meal-name">${lang==='ar'?m.ar:m.en}</div>
         ${rng?`<div class="price-range"><span class="pr-lbl">${t('priceRng')}</span><span class="pr-min">${rng.min} ${t('sarS')}</span><span class="pr-sep">—</span><span class="pr-max">${rng.max} ${t('sarS')}</span><span class="pr-note">${t('beforeDel')}</span></div>`:`<div style="font-size:12px;color:var(--muted);margin-bottom:10px;">${t('notAvail')}</div>`}
@@ -573,13 +625,11 @@ function openAdvisor(){if(!cartCount())return;buildAdvisor();document.getElement
 
 function buildAdvisor(){
   const items=Object.entries(cart).filter(([,q])=>q>0);
-
-  // ORDER BOX
   let sub=0;
   let oHtml=`<div class="order-ttl">${t('orderSummary')}</div>`;
   items.forEach(([id,qty])=>{
     const m=MEALS.find(x=>x.id===id);if(!m)return;
-    const vals=Object.values(m.prices).filter(v=>v!==null);
+    const vals=Object.values(m.prices).filter(v=>v!==null&&v!==undefined);
     const base=vals.length?Math.min(...vals):0;
     sub+=base*qty;
     oHtml+=`<div class="o-item">
@@ -590,16 +640,9 @@ function buildAdvisor(){
   });
   oHtml+=`<div class="o-subtotal"><span class="o-sub-lbl">${t('subtotal')}</span><span class="o-sub-val">${sub.toFixed(1)} ${t('sarS')}</span></div>`;
   document.getElementById('orderBox').innerHTML=oHtml;
-
-  // DISCLAIMER
   document.getElementById('feeDisclaimer').textContent=t('disclaimer');
 
-  // PLATFORMS — sort by total
-  const results=Object.keys(PL).map(pid=>{
-    const r=calcTotal(pid);
-    return r?{pid,...r}:null;
-  }).filter(Boolean).sort((a,b)=>a.total-b.total);
-
+  const results=Object.keys(PL).map(pid=>{const r=calcTotal(pid);return r?{pid,...r}:null;}).filter(Boolean).sort((a,b)=>a.total-b.total);
   if(!results.length){document.getElementById('platRows').innerHTML=`<p style="color:var(--muted);text-align:center;padding:20px;">${t('notAvail')}</p>`;return;}
 
   const minTotal=results[0].total;
@@ -607,15 +650,13 @@ function buildAdvisor(){
   document.getElementById('platRows').innerHTML=results.map(r=>{
     const isCheapest=r.total===minTotal;
     const gap=getMinGap(r.pid,r.meals);
-
-    // أسعار كل وجبة على هذا التطبيق — الأرخص بالأخضر
     const mealRows=items.map(([id,qty])=>{
       const m=MEALS.find(x=>x.id===id);if(!m)return'';
       const p=m.prices[r.pid];
       if(p===null||p===undefined)return`<tr><td class="bk-lbl">${lang==='ar'?m.ar:m.en} ×${qty}</td><td style="color:var(--muted);font-size:11px;">${t('notAvail')}</td></tr>`;
-      const allP=Object.values(m.prices).filter(v=>v!==null);
-      const isMinMeal=p===Math.min(...allP);
-      return`<tr><td class="bk-lbl">${lang==='ar'?m.ar:m.en} ×${qty}</td><td class="bk-val${isMinMeal?' green':''}">${(p*qty).toFixed(1)} ${t('sarS')}</td></tr>`;
+      const allP=Object.values(m.prices).filter(v=>v!==null&&v!==undefined);
+      const isMin=p===Math.min(...allP);
+      return`<tr><td class="bk-lbl">${lang==='ar'?m.ar:m.en} ×${qty}</td><td class="bk-val${isMin?' green':''}">${(p*qty).toFixed(1)} ${t('sarS')}</td></tr>`;
     }).join('');
 
     return`<div class="plat-row ${isCheapest?'cheapest':''}">
@@ -640,16 +681,249 @@ function buildAdvisor(){
 }
 
 function removeItem(id){
-  delete cart[id];
-  updateCartBar();
+  delete cart[id];updateCartBar();
   if(cartCount()===0){closeAdvisor();return;}
   buildAdvisor();
 }
 function closeAdvisor(){document.getElementById('overlay').classList.remove('open');}
 function outsideClose(e){if(e.target===document.getElementById('overlay'))closeAdvisor();}
 
+// ══ FALLBACK MEALS ══
+const FALLBACK_MEALS=[
+  {id:'ch4',ar:'وجبة دجاج البيك 4 قطع',en:'Al Baik Chicken Meal 4pc',cat:'chicken',img:GH+'chicken-meal-4pc.jpg',prices:{hs:22,keeta:22,toyou:22,mandoob:18}},
+  {id:'ch8',ar:'وجبة دجاج البيك 8 قطع',en:'Al Baik Chicken Meal 8pc',cat:'chicken',img:GH+'chicken-meal-8pc.jpg',prices:{hs:null,keeta:42,toyou:null,mandoob:35}},
+  {id:'ms10',ar:'وجبة دجاج مسحب 10 قطع',en:'Chicken Nuggets Meal 10pc',cat:'chicken',img:GH+'chicken-meal-8pc.jpg',prices:{hs:22,keeta:22,toyou:22,mandoob:18}},
+  {id:'cfb',ar:'برجر فيليه دجاج',en:'Chicken Fillet Burger',cat:'sandwiches',img:GH+'chicken-fillet-burger.jpg',prices:{hs:7,keeta:7,toyou:6.5,mandoob:5.5}},
+  {id:'bigbh',ar:'بيج بيك حراق',en:'Big Baik Spicy',cat:'sandwiches',img:GH+'big-baik.jpg',prices:{hs:17.5,keeta:17.5,toyou:16,mandoob:null}},
+  {id:'dbl',ar:'دبل بيك',en:'Double Baik',cat:'sandwiches',img:GH+'double-baik.jpg',prices:{hs:10.5,keeta:10.5,toyou:10,mandoob:9}},
+  {id:'cfs',ar:'ساندويش فيليه الدجاج',en:'Chicken Fillet Sandwich',cat:'sandwiches',img:GH+'chicken-fillet-sandwich.jpg',prices:{hs:10.5,keeta:10.5,toyou:9.5,mandoob:7.5}},
+  {id:'shwg',ar:'شاورما البيك',en:'Shawarma with Garlic',cat:'sandwiches',img:GH+'shawarma-garlic.jpg',prices:{hs:8.5,keeta:8.5,toyou:7.5,mandoob:6}},
+  {id:'shs',ar:'ساندويش جمبري',en:'Shrimp Sandwich',cat:'seafood',img:GH+'shrimp-sandwich.jpg',prices:{hs:16,keeta:16,toyou:15,mandoob:11.5}},
+  {id:'fsm',ar:'وجبة فيليه السمك',en:'Fish Fillet Meal',cat:'seafood',img:GH+'fish-fillet-meal.jpg',prices:{hs:null,keeta:30.5,toyou:28.5,mandoob:24.5}},
+  {id:'fry',ar:'بطاطس',en:'French Fries',cat:'sides',img:GH+'fries.jpg',prices:{hs:7,keeta:7,toyou:6.5,mandoob:4}},
+  {id:'hms',ar:'حمص',en:'Hummus',cat:'sides',img:GH+'hummus.jpg',prices:{hs:7,keeta:7,toyou:6.5,mandoob:5}},
+  {id:'7up',ar:'سفن أب',en:'Seven Up',cat:'drinks',img:GH+'7up.jpg',prices:{hs:4.5,keeta:4.5,toyou:4,mandoob:3.5}},
+  {id:'wtr',ar:'ماء',en:'Water',cat:'drinks',img:GH+'water.jpg',prices:{hs:2,keeta:2,toyou:2,mandoob:1}},
+];
+
+// ══ WAFFIR AI ══
+let wAnswers = {};
+let wStep = 0;
+
+const wSteps = [
+  { id:'budget',   label:'الميزانية',    labelEn:'Budget'   },
+  { id:'people',   label:'عدد الأشخاص', labelEn:'People'   },
+  { id:'food',     label:'نوع الطعام',   labelEn:'Food type'},
+  { id:'priority', label:'الأولوية',     labelEn:'Priority' },
+];
+
+const wOptions = {
+  budget:  [{v:30,ar:'أقل من 30 ريال',en:'Under 30 SAR'},{v:50,ar:'30 - 50 ريال',en:'30–50 SAR'},{v:80,ar:'50 - 80 ريال',en:'50–80 SAR'},{v:999,ar:'أكثر من 80 ريال',en:'Over 80 SAR'}],
+  people:  [{v:1,ar:'شخص واحد 🙋',en:'Just me 🙋'},{v:2,ar:'شخصان 👫',en:'Two people 👫'},{v:4,ar:'3-4 أشخاص 👨‍👩‍👧',en:'3–4 people 👨‍👩‍👧'},{v:6,ar:'5+ أشخاص 👨‍👩‍👧‍👦',en:'5+ people 👨‍👩‍👧‍👦'}],
+  food:    [{v:'chicken',ar:'🍗 دجاج',en:'🍗 Chicken'},{v:'sandwiches',ar:'🥪 ساندويشات',en:'🥪 Sandwiches'},{v:'seafood',ar:'🦐 مأكولات بحرية',en:'🦐 Seafood'},{v:'any',ar:'🍽️ أي شيء!',en:'🍽️ Anything!'}],
+  priority:[{v:'price',ar:'💰 أقل سعر',en:'💰 Lowest price'},{v:'speed',ar:'⚡ أسرع توصيل',en:'⚡ Fastest delivery'},{v:'balance',ar:'⚖️ توازن بينهما',en:'⚖️ Balance both'}],
+};
+
+const wQuestions = {
+  ar: ['كم ميزانيتك لهذا الطلب؟ 💰', 'ممتاز! 😊 كم شخص ستطلب لهم؟ 👥', 'رائع! ماذا تشتهي الآن؟ 🍽️', 'آخر سؤال! 😄 ما أولويتك؟'],
+  en: ['What is your budget? 💰', 'Great! 😊 How many people? 👥', 'What are you craving? 🍽️', 'Last one! 😄 What is your priority?'],
+};
+
+function openWaffir(){
+  document.getElementById('waffirOverlay').classList.add('open');
+  resetWaffir();
+}
+function closeWaffir(e){if(e.target===document.getElementById('waffirOverlay'))closeWaffirBtn();}
+function closeWaffirBtn(){document.getElementById('waffirOverlay').classList.remove('open');}
+
+function startWaffir(){
+  document.getElementById('waffirIntro').style.display='none';
+  document.getElementById('waffirQuestions').style.display='block';
+  wStep=0; wAnswers={};
+  showWStep();
+}
+
+function resetWaffir(){
+  wStep=0; wAnswers={};
+  document.getElementById('waffirIntro').style.display='block';
+  document.getElementById('waffirQuestions').style.display='none';
+  document.getElementById('waffirResult').style.display='none';
+}
+
+function showWStep(){
+  const step = wSteps[wStep];
+  const chatArea = document.getElementById('wChatArea');
+  const optArea = document.getElementById('wOptionsArea');
+
+  // Update progress
+  document.getElementById('wStep').textContent = (lang==='ar'?'السؤال ':'Question ')+(wStep+1)+' '+(lang==='ar'?'من':'of')+' 4';
+  document.getElementById('wStepName').textContent = lang==='ar'?step.label:step.labelEn;
+  document.getElementById('wProgress').style.width = ((wStep+1)*25)+'%';
+
+  // Add question bubble
+  const q = wQuestions[lang][wStep];
+  chatArea.innerHTML += `
+    <div style="display:flex;align-items:flex-start;gap:10px;">
+      <div style="width:36px;height:36px;background:var(--g1);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;">🤖</div>
+      <div style="background:#fff;border-radius:12px;padding:12px;font-size:14px;line-height:1.6;flex:1;box-shadow:0 1px 4px rgba(0,0,0,.06);">${q}</div>
+    </div>`;
+
+  // Show options
+  const opts = wOptions[step.id];
+  optArea.innerHTML = `<div style="display:flex;flex-direction:column;gap:8px;">
+    ${opts.map(o=>`
+      <button onclick="selectWOption('${step.id}','${o.v}')"
+        style="background:#fff;border:1.5px solid var(--beige2);border-radius:12px;padding:12px 16px;font-family:Tajawal,sans-serif;font-size:14px;font-weight:700;color:var(--text);cursor:pointer;text-align:right;transition:all .2s;"
+        onmouseover="this.style.borderColor='var(--g2)';this.style.background='var(--beige3)'"
+        onmouseout="this.style.borderColor='var(--beige2)';this.style.background='#fff'">
+        ${lang==='ar'?o.ar:o.en}
+      </button>`).join('')}
+  </div>`;
+
+  chatArea.scrollTop = chatArea.scrollHeight;
+}
+
+function selectWOption(stepId, val){
+  wAnswers[stepId] = isNaN(val) ? val : +val;
+
+  // Show selected answer in chat
+  const chatArea = document.getElementById('wChatArea');
+  const opts = wOptions[stepId];
+  const selected = opts.find(o=>String(o.v)===String(val));
+  const label = selected ? (lang==='ar'?selected.ar:selected.en) : val;
+
+  chatArea.innerHTML += `
+    <div style="display:flex;justify-content:flex-end;">
+      <div style="background:var(--g1);color:#fff;border-radius:12px;padding:10px 14px;font-size:14px;font-weight:700;max-width:80%;">${label}</div>
+    </div>`;
+
+  // Clear options
+  document.getElementById('wOptionsArea').innerHTML = '';
+
+  wStep++;
+  if(wStep < 4){
+    setTimeout(()=>showWStep(), 400);
+  } else {
+    setTimeout(()=>showWResult(), 600);
+  }
+}
+
+function showWResult(){
+  document.getElementById('waffirQuestions').style.display='none';
+  document.getElementById('waffirResult').style.display='block';
+
+  const {budget, people, food, priority} = wAnswers;
+  const budgetPerPerson = budget / (people||1);
+
+  // Filter meals by food type
+  let candidates = MEALS.filter(m => {
+    if(food === 'any') return true;
+    return m.cat === food;
+  });
+
+  // Calculate best combo per platform
+  const results = [];
+  Object.keys(PL).forEach(pid => {
+    const available = candidates.filter(m => m.prices[pid] !== null && m.prices[pid] !== undefined);
+    if(!available.length) return;
+
+    // Sort by price
+    const sorted = [...available].sort((a,b) => a.prices[pid] - b.prices[pid]);
+
+    // Pick meals within budget
+    let total = 0, picked = [], qty = people || 1;
+    for(const m of sorted){
+      const cost = m.prices[pid] * qty;
+      if(total + cost <= budget){
+        picked.push({meal:m, qty, cost});
+        total += cost;
+        if(picked.length >= 2) break;
+      }
+    }
+    if(!picked.length && sorted.length){
+      picked.push({meal:sorted[0], qty:1, cost:sorted[0].prices[pid]});
+      total = sorted[0].prices[pid];
+    }
+
+    const fee = mode==='delivery' ? (total >= PL[pid].min_order ? PL[pid].fee_disc : PL[pid].fee_normal) : 0;
+    const grandTotal = total + fee;
+
+    results.push({pid, picked, mealsTotal:total, fee, grandTotal, eta:plEta(pid)});
+  });
+
+  if(!results.length){
+    document.getElementById('wResultTitle').textContent = lang==='ar' ? 'لا توجد نتائج' : 'No results';
+    document.getElementById('wMessage').textContent = lang==='ar' ? 'جرب ميزانية أعلى أو نوع طعام مختلف.' : 'Try a higher budget or different food type.';
+    return;
+  }
+
+  // Sort by priority
+  results.sort((a,b) => {
+    if(priority === 'price') return a.grandTotal - b.grandTotal;
+    if(priority === 'speed') {
+      const etaA = parseInt(a.eta);
+      const etaB = parseInt(b.eta);
+      return etaA - etaB;
+    }
+    return (a.grandTotal * 0.6 + parseInt(a.eta)*0.4) - (b.grandTotal * 0.6 + parseInt(b.eta)*0.4);
+  });
+
+  const best = results[0];
+
+  // Title
+  document.getElementById('wResultTitle').textContent = lang==='ar' ? 'توصية وفّر لك 🎯' : 'Waffir Recommends 🎯';
+  document.getElementById('wResultSub').textContent = lang==='ar'
+    ? `لـ ${people} ${people===1?'شخص':'أشخاص'} بميزانية ${budget} ريال`
+    : `For ${people} ${people===1?'person':'people'} with ${budget} SAR budget`;
+
+  // Recommended meals
+  document.getElementById('wMeals').innerHTML = `
+    <div style="background:var(--beige3);border-radius:14px;padding:14px;">
+      <div style="font-size:13px;font-weight:700;color:var(--muted);margin-bottom:10px;">${lang==='ar'?'الوجبات المقترحة':'Suggested Meals'}</div>
+      ${best.picked.map(({meal,qty,cost})=>`
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid var(--beige2);">
+          <div>
+            <div style="font-size:13px;font-weight:700;">${lang==='ar'?meal.ar:meal.en}</div>
+            <div style="font-size:11px;color:var(--muted);">× ${qty}</div>
+          </div>
+          <div style="font-size:14px;font-weight:800;color:var(--g1);">${cost.toFixed(1)} ${lang==='ar'?'ر.س':'SAR'}</div>
+        </div>`).join('')}
+      <div style="display:flex;justify-content:space-between;padding-top:8px;font-weight:800;font-size:13px;">
+        <span>${lang==='ar'?'المجموع':'Subtotal'}</span>
+        <span style="color:var(--g1);">${best.mealsTotal.toFixed(1)} ${lang==='ar'?'ر.س':'SAR'}</span>
+      </div>
+    </div>`;
+
+  // Best platform
+  document.getElementById('wPlatform').innerHTML = `
+    <div style="background:#edf7f1;border:2px solid var(--g2);border-radius:14px;padding:14px;">
+      <div style="font-size:12px;font-weight:700;color:var(--muted);margin-bottom:8px;">${lang==='ar'?'أفضل تطبيق لك':'Best Platform for You'}</div>
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+        <div style="display:flex;align-items:center;gap:8px;">
+          <div style="width:12px;height:12px;border-radius:50%;background:${PL[best.pid].color};"></div>
+          <span style="font-size:16px;font-weight:800;">${plN(best.pid)}</span>
+        </div>
+        <span style="font-size:20px;font-weight:900;color:var(--g1);">${best.grandTotal.toFixed(1)} ${lang==='ar'?'ر.س':'SAR'}</span>
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        <span style="background:#fff;font-size:11px;padding:3px 8px;border-radius:8px;color:var(--muted);">${lang==='ar'?'توصيل:':'Delivery:'} ${best.fee} ${lang==='ar'?'ر.س':'SAR'}</span>
+        <span style="background:#fff;font-size:11px;padding:3px 8px;border-radius:8px;color:var(--muted);">⏱ ${best.eta}</span>
+      </div>
+      ${mode==='delivery'?`<a href="${PL[best.pid].link}" target="_blank" style="display:flex;align-items:center;justify-content:center;gap:6px;width:100%;padding:11px;background:var(--g1);color:#fff;border-radius:11px;font-family:Tajawal,sans-serif;font-size:14px;font-weight:800;text-decoration:none;margin-top:10px;">${lang==='ar'?'اطلب الآن →':'Order Now →'} ${plN(best.pid)}</a>`:''}
+    </div>`;
+
+  // Message from Waffir
+  const saving = results.length > 1 ? (results[results.length-1].grandTotal - best.grandTotal).toFixed(1) : 0;
+  const msgs_ar = [
+    `بناءً على ميزانيتك وعدد الأشخاص، هذا هو الخيار الأمثل لك! ${saving > 0 ? `ستوفر ${saving} ريال مقارنة بباقي التطبيقات 💰` : ''}`,
+    `اخترت لك الوجبات الأنسب لميزانيتك 🎯 ${priority === 'speed' ? `وكيتا الأسرع بـ 17 دقيقة فقط ⚡` : ''}`,
+  ];
+  document.getElementById('wMessage').textContent = msgs_ar[Math.floor(Math.random()*msgs_ar.length)];
+}
+
+// ══ INIT ══
 applyLang();
-renderRestaurants();
+loadFromSheets();
 </script>
 </body>
 </html>
