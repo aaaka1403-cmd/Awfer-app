@@ -3,309 +3,653 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>أوفر — مقارنة أسعار التوصيل</title>
-<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;800;900&display=swap" rel="stylesheet">
+<title>أوفر | Awfer</title>
 <style>
-*{box-sizing:border-box;margin:0;padding:0;}
-body{font-family:'Tajawal',sans-serif;background:#F7F7F9;direction:rtl;}
-.app{max-width:430px;margin:0 auto;min-height:100vh;position:relative;}
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap');
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --g1:#1a4d2e;--g2:#2a6e42;
+  --gold:#c9a84c;--gold2:#e2c97a;--gold3:#f7f0dc;
+  --beige:#f5efe0;--beige2:#ede4cc;--beige3:#faf6ed;
+  --white:#fff;--text:#1a1a1a;--muted:#888;
+  --hs:#c0392b;--keeta:#1a5276;--toyou:#0d6e5e;--mandoob:#16a28a;
+}
+body{font-family:'Tajawal',sans-serif;background:var(--beige);color:var(--text);max-width:430px;margin:0 auto;min-height:100vh;padding-bottom:90px;}
+.screen{display:none;}.screen.active{display:block;}
 
-/* Header */
-.header{background:linear-gradient(160deg,#0A3D20,#1A6635,#145229);padding:20px 16px 28px;position:relative;overflow:hidden;}
-.header::before{content:'';position:absolute;top:-60px;left:-60px;width:200px;height:200px;border-radius:50%;background:rgba(240,208,96,0.06);}
-.top-bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;position:relative;z-index:2;}
-.logo-wrap{display:flex;align-items:center;gap:10px;}
-.logo-text{color:white;font-weight:900;font-size:22px;line-height:1;}
-.logo-text span{color:#F0D060;}
-.logo-sub{color:rgba(255,255,255,0.4);font-size:10px;letter-spacing:2px;text-transform:uppercase;margin-top:2px;}
-.login-btn{background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.15);border-radius:12px;padding:8px 14px;color:white;font-size:13px;font-weight:700;cursor:pointer;font-family:'Tajawal',sans-serif;}
+/* HEADER */
+.hdr{background:var(--g1);padding:18px 16px 20px;position:relative;overflow:hidden;}
+.hdr::before{content:'';position:absolute;top:-60px;left:-60px;width:180px;height:180px;border-radius:50%;background:rgba(201,168,76,.06);pointer-events:none;}
+.hdr-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
+.logo-row{display:flex;align-items:center;gap:10px;}
+.logo-box{width:46px;height:46px;border-radius:13px;border:2px solid var(--gold);overflow:hidden;background:var(--gold3);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.logo-box img{width:100%;height:100%;object-fit:contain;}
+.logo-txt .t1{font-size:22px;font-weight:900;color:#fff;}
+.logo-txt .t1 em{color:var(--gold);font-style:normal;}
+.logo-txt .t2{font-size:9px;color:rgba(255,255,255,.5);letter-spacing:2px;text-transform:uppercase;}
+.hdr-right{display:flex;align-items:center;gap:8px;}
+.lang-btn{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);color:#fff;padding:6px 12px;border-radius:20px;font-family:'Tajawal',sans-serif;font-size:12px;font-weight:700;cursor:pointer;}
+.back-btn{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);color:#fff;width:34px;height:34px;border-radius:50%;font-size:18px;cursor:pointer;display:none;align-items:center;justify-content:center;}
+.back-btn.show{display:flex;}
+.toggle{display:flex;background:rgba(255,255,255,.1);border-radius:13px;padding:4px;margin-bottom:13px;}
+.tgl{flex:1;border:none;border-radius:10px;padding:10px;font-family:'Tajawal',sans-serif;font-size:14px;font-weight:700;cursor:pointer;background:transparent;color:rgba(255,255,255,.6);transition:all .2s;}
+.tgl.active{background:#fff;color:var(--g1);}
+.srch{display:flex;gap:8px;margin-bottom:13px;}
+.srch input{flex:1;background:#fff;border:none;border-radius:12px;padding:11px 14px;font-family:'Tajawal',sans-serif;font-size:14px;outline:none;color:var(--text);}
+.srch input::placeholder{color:#bbb;}
+.srch button{background:var(--gold);border:none;border-radius:12px;padding:11px 16px;font-family:'Tajawal',sans-serif;font-size:13px;font-weight:800;color:var(--g1);cursor:pointer;}
+.cities{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;}
+.cities::-webkit-scrollbar{display:none;}
+.city{padding:6px 14px;border:none;border-radius:20px;font-family:'Tajawal',sans-serif;font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap;background:rgba(255,255,255,.13);color:rgba(255,255,255,.75);transition:all .2s;}
+.city.active{background:var(--gold);color:var(--g1);}
 
-/* Toggle */
-.toggle-wrap{background:rgba(255,255,255,0.1);border-radius:14px;padding:4px;display:flex;gap:4px;margin-bottom:16px;position:relative;z-index:2;}
-.toggle-btn{flex:1;padding:9px 0;border-radius:11px;border:none;cursor:pointer;font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:center;gap:6px;transition:all .2s;font-family:'Tajawal',sans-serif;}
-.toggle-btn.active{background:white;color:#0A3D20;box-shadow:0 2px 8px rgba(0,0,0,0.15);}
-.toggle-btn.inactive{background:transparent;color:rgba(255,255,255,0.6);}
+/* SAVINGS */
+.savings{margin:14px 16px;background:var(--g1);border-radius:16px;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;border:1px solid rgba(201,168,76,.2);}
+.sav-txt p{font-size:11px;color:rgba(255,255,255,.6);margin-bottom:2px;}
+.sav-txt h3{font-size:20px;font-weight:900;color:var(--gold);}
+.sav-ico{width:44px;height:44px;border-radius:12px;background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.25);display:flex;align-items:center;justify-content:center;overflow:hidden;}
+.sav-ico img{width:100%;height:100%;object-fit:contain;}
 
-/* Search */
-.search-wrap{background:white;border-radius:16px;display:flex;align-items:center;padding:4px 4px 4px 14px;box-shadow:0 8px 32px rgba(0,0,0,0.25);position:relative;z-index:2;}
-.search-wrap input{border:none;background:transparent;flex:1;font-size:14px;color:#333;direction:rtl;padding:11px 0;font-family:'Tajawal',sans-serif;outline:none;}
-.search-btn{background:linear-gradient(135deg,#0A3D20,#1A6635);border:none;border-radius:12px;padding:11px 18px;color:white;font-size:14px;font-weight:800;cursor:pointer;font-family:'Tajawal',sans-serif;}
+/* PLATFORMS */
+.plat-sec{margin:0 16px 16px;background:#fff;border-radius:14px;padding:12px 14px;}
+.plat-sec h3{font-size:12px;font-weight:700;color:var(--muted);margin-bottom:10px;}
+.plat-chips{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;}
+.plat-chips::-webkit-scrollbar{display:none;}
+.pchip{display:flex;flex-direction:column;align-items:center;gap:4px;min-width:56px;}
+.pico{width:46px;height:46px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;color:#fff;}
+.pchip span{font-size:10px;font-weight:600;color:var(--muted);white-space:nowrap;text-align:center;}
 
-/* Cities */
-.cities{display:flex;gap:8px;margin-top:14px;overflow-x:auto;position:relative;z-index:2;}
-.city-btn{background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.7);border:none;border-radius:20px;padding:6px 16px;font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap;font-family:'Tajawal',sans-serif;transition:all .2s;}
-.city-btn.active{background:#F0D060;color:#0A3D20;}
+.sec{padding:0 16px;margin-bottom:20px;}
+.sec-ttl{font-size:17px;font-weight:800;margin-bottom:12px;}
 
-/* Banner */
-.banner{margin:14px 14px 0;border-radius:18px;background:linear-gradient(135deg,#0A3D20,#1A6635);padding:15px 18px;display:flex;align-items:center;gap:14px;border:1px solid rgba(240,208,96,0.3);}
-.banner-num{color:#F0D060;font-weight:900;font-size:20px;margin-top:1px;}
-.banner-label{color:rgba(255,255,255,0.7);font-size:12px;}
-
-/* Apps bar */
-.section{padding:16px 14px 0;}
-.section-title{font-weight:800;font-size:14px;margin-bottom:12px;color:#111;}
-.apps-bar{display:flex;gap:10px;overflow-x:auto;}
-.app-icon{display:flex;flex-direction:column;align-items:center;gap:5px;flex-shrink:0;}
-.app-logo{width:48px;height:48px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;color:white;box-shadow:0 2px 10px rgba(0,0,0,0.12);}
-.app-name{font-size:10px;font-weight:700;color:#666;white-space:nowrap;}
-
-/* Categories */
-.cats{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;}
-.cat-btn{display:flex;flex-direction:column;align-items:center;gap:5px;padding:12px 14px;background:white;border-radius:14px;border:1.5px solid #F0F0F0;cursor:pointer;flex-shrink:0;min-width:66px;box-shadow:0 2px 8px rgba(0,0,0,0.05);font-family:'Tajawal',sans-serif;}
-.cat-icon{font-size:24px;}
-.cat-name{font-size:11px;font-weight:700;color:#444;white-space:nowrap;}
-
-/* Restaurant cards */
-.rest-list{padding:16px 14px 100px;}
-.rest-card{background:white;border-radius:18px;overflow:hidden;box-shadow:0 2px 14px rgba(0,0,0,0.08);margin-bottom:12px;cursor:pointer;border:1px solid rgba(0,0,0,0.04);}
-.rest-cover{height:120px;position:relative;display:flex;align-items:center;justify-content:center;}
-.rest-emoji{font-size:52px;filter:drop-shadow(0 4px 12px rgba(0,0,0,0.3));}
-.rest-badge{position:absolute;top:10px;right:10px;background:#22C55E;color:white;border-radius:20px;padding:3px 10px;font-size:10px;font-weight:800;}
-.rest-eta{position:absolute;bottom:10px;left:10px;background:rgba(0,0,0,0.45);backdrop-filter:blur(6px);color:white;border-radius:10px;padding:3px 10px;font-size:11px;font-weight:700;}
+/* RESTAURANT CARDS */
+.rest-grid{display:flex;flex-direction:column;gap:12px;}
+.rest-card{background:#fff;border-radius:18px;overflow:hidden;cursor:pointer;box-shadow:0 2px 12px rgba(26,77,46,.07);transition:transform .15s;}
+.rest-card:active{transform:scale(0.98);}
+.rest-img{height:145px;overflow:hidden;position:relative;}
+.rest-img img{width:100%;height:100%;object-fit:cover;}
+.rest-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(26,77,46,.55) 0%,transparent 55%);}
 .rest-body{padding:12px 14px;}
-.rest-row{display:flex;justify-content:space-between;align-items:flex-start;}
-.rest-name{font-weight:800;font-size:16px;color:#111;}
-.rest-meta{font-size:12px;color:#888;margin-top:2px;}
-.rest-price-box{background:#FFF5F5;border-radius:10px;padding:6px 10px;text-align:center;}
-.rest-price{font-weight:900;font-size:18px;color:#E63946;line-height:1;}
-.rest-price-label{font-size:9px;color:#aaa;}
-.rest-tags{display:flex;gap:5px;margin-top:8px;flex-wrap:wrap;}
-.tag{background:#F0FFF4;color:#166534;border-radius:20px;padding:2px 9px;font-size:10px;font-weight:700;}
+.rest-top{display:flex;align-items:center;justify-content:space-between;}
+.rest-name{font-size:16px;font-weight:800;}
+.rest-cat{font-size:11px;color:var(--muted);margin-top:2px;}
+.save-pill{background:var(--gold3);border-radius:20px;padding:5px 12px;white-space:nowrap;}
+.save-pill span{font-size:12px;font-weight:700;color:var(--g1);}
 
-/* Apps bottom */
-.rest-apps{display:flex;justify-content:space-between;align-items:center;margin-top:10px;padding-top:10px;border-top:1px solid #F5F5F5;}
-.rest-apps-label{font-size:11px;color:#888;}
-.rest-apps-dots{display:flex;gap:4px;}
-.app-dot{width:26px;height:26px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:900;color:white;}
+/* CATEGORIES */
+.cats{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin-bottom:14px;}
+.cats::-webkit-scrollbar{display:none;}
+.cat{display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;min-width:62px;}
+.cat-ic{width:60px;height:60px;background:#fff;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:26px;border:2px solid transparent;transition:all .2s;}
+.cat.active .cat-ic{border-color:var(--gold);background:var(--gold3);}
+.cat span{font-size:11px;font-weight:600;color:var(--muted);}
 
-/* Bottom nav */
-.bottom-nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;background:white;border-top:1px solid #F0F0F0;z-index:100;display:flex;justify-content:space-around;padding:10px 0 12px;box-shadow:0 -4px 20px rgba(0,0,0,0.08);}
-.nav-item{background:none;border:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:3px;padding:3px 14px;font-family:'Tajawal',sans-serif;}
-.nav-icon{font-size:22px;}
-.nav-label{font-size:10px;font-weight:700;}
-.nav-item.active .nav-label{color:#0A3D20;}
-.nav-item .nav-label{color:#aaa;}
-.nav-bar{position:absolute;top:-10px;width:28px;height:3px;background:#0A3D20;border-radius:0 0 4px 4px;}
+/* MEAL CARDS */
+.meal-list{display:flex;flex-direction:column;gap:10px;}
+.meal-card{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 2px 10px rgba(26,77,46,.06);}
+.meal-img-w{position:relative;height:128px;overflow:hidden;}
+.meal-img-w img{width:100%;height:100%;object-fit:cover;}
+.meal-badge{position:absolute;top:8px;right:8px;background:var(--g1);color:#fff;font-size:10px;font-weight:700;padding:3px 9px;border-radius:12px;}
+.meal-body{padding:11px 14px;}
+.meal-name{font-size:14px;font-weight:800;margin-bottom:6px;}
+.price-range{display:flex;align-items:center;gap:6px;margin-bottom:10px;flex-wrap:wrap;}
+.pr-lbl{font-size:11px;color:var(--muted);}
+.pr-min{font-size:15px;font-weight:900;color:var(--g2);}
+.pr-sep{font-size:12px;color:var(--muted);}
+.pr-max{font-size:15px;font-weight:900;color:var(--hs);}
+.pr-note{font-size:10px;color:var(--muted);}
+.meal-footer{display:flex;align-items:center;justify-content:space-between;}
+.qty-ctrl{display:flex;align-items:center;gap:8px;}
+.qty-btn{width:32px;height:32px;border-radius:50%;border:none;background:var(--beige2);font-size:18px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--g1);}
+.qty-num{font-size:16px;font-weight:800;min-width:22px;text-align:center;}
+.add-btn{background:var(--g1);color:#fff;border:none;border-radius:20px;padding:8px 16px;font-family:'Tajawal',sans-serif;font-size:13px;font-weight:700;cursor:pointer;}
+.add-btn.added{background:var(--gold);color:var(--g1);}
+
+/* CART BAR */
+.cart-bar{position:fixed;bottom:70px;left:50%;transform:translateX(-50%);width:calc(100% - 32px);max-width:398px;background:var(--g1);border-radius:16px;padding:13px 18px;z-index:100;display:none;box-shadow:0 8px 28px rgba(26,77,46,.35);cursor:pointer;align-items:center;justify-content:space-between;}
+.cart-bar.show{display:flex;}
+.cart-info p{font-size:11px;color:rgba(255,255,255,.6);margin-bottom:1px;}
+.cart-info h4{font-size:16px;font-weight:900;color:#fff;}
+.cart-cta{background:var(--gold);color:var(--g1);border:none;border-radius:12px;padding:9px 16px;font-family:'Tajawal',sans-serif;font-size:13px;font-weight:800;cursor:pointer;white-space:nowrap;}
+
+/* MODAL */
+.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:200;align-items:flex-end;justify-content:center;}
+.overlay.open{display:flex;}
+.modal{background:#fff;border-radius:24px 24px 0 0;width:100%;max-width:430px;max-height:92vh;overflow-y:auto;padding:20px 18px 36px;animation:up .28s ease;}
+@keyframes up{from{transform:translateY(100%)}to{transform:translateY(0)}}
+.m-handle{width:36px;height:4px;background:#ddd;border-radius:2px;margin:0 auto 16px;}
+.modal-ttl{font-size:18px;font-weight:900;margin-bottom:4px;}
+.modal-sub{font-size:12px;color:var(--muted);margin-bottom:14px;line-height:1.5;}
+
+/* ORDER BOX */
+.order-box{background:var(--beige3);border-radius:14px;padding:14px;margin-bottom:14px;}
+.order-ttl{font-size:13px;font-weight:700;color:var(--muted);margin-bottom:10px;}
+.o-item{display:flex;align-items:center;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--beige2);}
+.o-item:last-of-type{border-bottom:none;}
+.o-left{flex:1;}
+.o-name{font-size:13px;font-weight:700;}
+.o-qty{font-size:11px;color:var(--muted);}
+.o-price{font-size:13px;font-weight:800;margin:0 10px;}
+.o-del{width:28px;height:28px;border-radius:50%;border:none;background:#ffeaea;color:#c0392b;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.o-subtotal{display:flex;justify-content:space-between;padding-top:10px;margin-top:6px;border-top:1px solid var(--beige2);}
+.o-sub-lbl{font-size:13px;font-weight:800;color:var(--g1);}
+.o-sub-val{font-size:15px;font-weight:900;color:var(--g1);}
+
+/* FEE DISCLAIMER */
+.fee-disclaimer{background:#fffbe6;border:1px solid #f0d060;border-radius:10px;padding:10px 12px;margin-bottom:14px;font-size:11px;color:#7a6000;line-height:1.6;}
+
+/* PLATFORMS */
+.compare-ttl{font-size:15px;font-weight:800;margin-bottom:10px;}
+.plat-rows{display:flex;flex-direction:column;gap:10px;margin-bottom:14px;}
+.plat-row{border-radius:14px;padding:14px 15px;background:var(--beige);}
+.plat-row.cheapest{background:#edf7f1;border:2px solid var(--g2);}
+.pr-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
+.pr-name-row{display:flex;align-items:center;gap:8px;}
+.pr-dot{width:12px;height:12px;border-radius:50%;flex-shrink:0;}
+.pr-name{font-size:15px;font-weight:800;}
+.pr-total{font-size:21px;font-weight:900;}
+.pr-total.green{color:var(--g1);}
+
+/* BREAKDOWN TABLE */
+.bk-table{width:100%;border-collapse:collapse;margin-bottom:8px;}
+.bk-table td{padding:4px 0;font-size:12px;vertical-align:middle;}
+.bk-table td:last-child{text-align:left;font-weight:700;}
+.bk-lbl{color:var(--muted);}
+.bk-val{}
+.bk-val.green{color:var(--g2);font-weight:800;}
+.bk-divider td{border-top:1px dashed var(--beige2);padding-top:6px;}
+.bk-bold td{font-weight:800;font-size:13px;}
+.bk-eta td{color:var(--muted);font-size:11px;}
+
+/* MIN ORDER WARNING */
+.min-warn{display:flex;align-items:center;gap:6px;background:#fff8e1;border:1px solid #f0c040;border-radius:8px;padding:7px 10px;font-size:11px;color:#7a5c00;margin-bottom:8px;}
+
+/* ORDER BTN */
+.order-btn{display:flex;align-items:center;justify-content:center;gap:6px;width:100%;padding:12px;border:none;border-radius:12px;font-family:'Tajawal',sans-serif;font-size:14px;font-weight:800;cursor:pointer;text-decoration:none;transition:transform .15s;}
+.order-btn:active{transform:scale(0.97);}
+.order-btn.primary{background:var(--g1);color:#fff;}
+.order-btn.secondary{background:var(--beige2);color:var(--text);}
+
+.close-btn{width:100%;background:var(--g1);color:#fff;border:none;border-radius:14px;padding:14px;font-family:'Tajawal',sans-serif;font-size:16px;font-weight:700;cursor:pointer;}
+
+/* NAV */
+.nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;background:#fff;border-top:1px solid var(--beige2);display:flex;z-index:50;}
+.nav-i{flex:1;display:flex;flex-direction:column;align-items:center;padding:10px 0;cursor:pointer;gap:3px;}
+.nav-i .ic{font-size:21px;}
+.nav-i .lb{font-size:11px;font-weight:600;color:#aaa;}
+.nav-i.active .lb{color:var(--g1);}
 </style>
 </head>
 <body>
-<div class="app">
-  <!-- Header -->
-  <div class="header">
-    <div class="top-bar">
-      <div class="logo-wrap">
-        <svg width="42" height="42" viewBox="0 0 120 120">
-          <defs>
-            <linearGradient id="lg" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#0A3D20"/>
-              <stop offset="100%" stop-color="#1A6635"/>
-            </linearGradient>
-            <linearGradient id="gg" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#C8A200"/>
-              <stop offset="100%" stop-color="#F0D060"/>
-            </linearGradient>
-          </defs>
-          <path d="M60 6 L108 24 L108 66 Q108 96 60 114 Q12 96 12 66 L12 24 Z" fill="url(#lg)"/>
-          <path d="M60 11 L103 28 L103 66 Q103 93 60 109 Q17 93 17 66 L17 28 Z" fill="none" stroke="url(#gg)" stroke-width="2" opacity="0.7"/>
-          <path d="M60 26 L84 82 L75 82 L68 64 L52 64 L45 82 L36 82 Z" fill="white"/>
-          <rect x="52" y="57" width="16" height="5.5" fill="#0A3D20" rx="1.5"/>
-          <circle cx="60" cy="22" r="3.5" fill="url(#gg)"/>
-        </svg>
-        <div>
-          <div class="logo-text"><span>A</span>wfer</div>
-          <div class="logo-sub">Delivery & Savings Hub</div>
+
+<!-- ══ SCREEN 1 ══ -->
+<div class="screen active" id="s1">
+  <div class="hdr">
+    <div class="hdr-top">
+      <div class="logo-row">
+        <div class="logo-box">
+          <img src="https://raw.githubusercontent.com/aaaka1403-cmd/Awfer-app/main/Awfer-logo.png" alt="Awfer">
+        </div>
+        <div class="logo-txt">
+          <div class="t1"><em>A</em>wfer</div>
+          <div class="t2">Delivery & Savings Hub</div>
         </div>
       </div>
-      <button class="login-btn">دخول</button>
+      <div class="hdr-right">
+        <button class="lang-btn" onclick="toggleLang()">EN</button>
+      </div>
     </div>
-
-    <!-- Toggle -->
-    <div class="toggle-wrap">
-      <button class="toggle-btn active" onclick="setMode('delivery',this)">🛵 توصيل</button>
-      <button class="toggle-btn inactive" onclick="setMode('pickup',this)">🏃 استلام</button>
+    <div class="toggle">
+      <button class="tgl active" id="btnD" onclick="setMode('delivery')"><span id="lbl-del">🛵 توصيل</span></button>
+      <button class="tgl" id="btnP" onclick="setMode('pickup')"><span id="lbl-pic">🏃 استلام</span></button>
     </div>
-
-    <!-- Search -->
-    <div class="search-wrap">
-      <span style="font-size:17px;color:#aaa;margin-left:8px;">🔍</span>
-      <input placeholder="ابحث عن مطعم أو وجبة..." id="searchInput" oninput="filterRests()"/>
-      <button class="search-btn">بحث</button>
+    <div class="srch">
+      <input id="restSearch" placeholder="ابحث عن مطعم..." oninput="renderRestaurants()">
+      <button>بحث</button>
     </div>
-
-    <!-- Cities -->
     <div class="cities">
-      <button class="city-btn active" onclick="setCity('الرياض',this)">الرياض</button>
-      <button class="city-btn" onclick="setCity('جدة',this)">جدة</button>
-      <button class="city-btn" onclick="setCity('الدمام',this)">الدمام</button>
-      <button class="city-btn" onclick="setCity('الكل',this)">الكل</button>
+      <button class="city active" onclick="setCity(this)">الرياض</button>
+      <button class="city" onclick="setCity(this)">جدة</button>
+      <button class="city" onclick="setCity(this)">الدمام</button>
+      <button class="city" onclick="setCity(this)">الكل</button>
     </div>
   </div>
 
-  <!-- Banner -->
-  <div class="banner">
-    <svg width="44" height="44" viewBox="0 0 120 120">
-      <defs>
-        <linearGradient id="lg2" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="#0A3D20"/>
-          <stop offset="100%" stop-color="#1A6635"/>
-        </linearGradient>
-        <linearGradient id="gg2" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="#C8A200"/>
-          <stop offset="100%" stop-color="#F0D060"/>
-        </linearGradient>
-      </defs>
-      <path d="M60 6 L108 24 L108 66 Q108 96 60 114 Q12 96 12 66 L12 24 Z" fill="url(#lg2)"/>
-      <path d="M60 26 L84 82 L75 82 L68 64 L52 64 L45 82 L36 82 Z" fill="white"/>
-      <rect x="52" y="57" width="16" height="5.5" fill="#0A3D20" rx="1.5"/>
-    </svg>
-    <div>
-      <div class="banner-label">وفّرنا على مستخدمينا هذا الشهر</div>
-      <div class="banner-num">2,847,320 ريال</div>
+  <div class="savings">
+    <div class="sav-txt">
+      <p id="lbl-saved">وفّرنا على مستخدمينا هذا الشهر</p>
+      <h3>2,847,320 ريال</h3>
+    </div>
+    <div class="sav-ico">
+      <img src="https://raw.githubusercontent.com/aaaka1403-cmd/Awfer-app/main/Awfer-logo.png" alt="A">
     </div>
   </div>
 
-  <!-- Apps -->
-  <div class="section">
-    <div class="section-title">نقارن بين أفضل التطبيقات</div>
-    <div class="apps-bar">
-      <div class="app-icon"><div class="app-logo" style="background:#FF5A00;">H</div><div class="app-name">هنقريستيشن</div></div>
-      <div class="app-icon"><div class="app-logo" style="background:#E60000;">K</div><div class="app-name">كيتا</div></div>
-      <div class="app-icon"><div class="app-logo" style="background:#003087;">ج</div><div class="app-name">جاهز</div></div>
-      <div class="app-icon"><div class="app-logo" style="background:#00A651;">م</div><div class="app-name">مرسول</div></div>
-      <div class="app-icon"><div class="app-logo" style="background:#C8A200;color:#111;">N</div><div class="app-name">نون فود</div></div>
+  <div class="plat-sec">
+    <h3 id="lbl-compare">نقارن بين هذه المنصات</h3>
+    <div class="plat-chips">
+      <div class="pchip"><div class="pico" style="background:var(--hs)">H</div><span>هنقرستيشن</span></div>
+      <div class="pchip"><div class="pico" style="background:var(--keeta)">K</div><span>كيتا</span></div>
+      <div class="pchip"><div class="pico" style="background:var(--toyou)">T</div><span>تويو</span></div>
+      <div class="pchip"><div class="pico" style="background:var(--mandoob)">M</div><span>مستر مندوب</span></div>
     </div>
   </div>
 
-  <!-- Categories -->
-  <div class="section">
-    <div class="section-title">تصفح حسب الفئة</div>
-    <div class="cats">
-      <button class="cat-btn"><span class="cat-icon">🍔</span><span class="cat-name">برجر</span></button>
-      <button class="cat-btn"><span class="cat-icon">🍕</span><span class="cat-name">بيتزا</span></button>
-      <button class="cat-btn"><span class="cat-icon">🌮</span><span class="cat-name">شاورما</span></button>
-      <button class="cat-btn"><span class="cat-icon">🍗</span><span class="cat-name">دجاج</span></button>
-      <button class="cat-btn"><span class="cat-icon">🍣</span><span class="cat-name">سوشي</span></button>
-      <button class="cat-btn"><span class="cat-icon">☕</span><span class="cat-name">قهوة</span></button>
-      <button class="cat-btn"><span class="cat-icon">🍩</span><span class="cat-name">حلويات</span></button>
-      <button class="cat-btn"><span class="cat-icon">🥗</span><span class="cat-name">صحي</span></button>
-    </div>
-  </div>
-
-  <!-- Restaurants -->
-  <div class="rest-list" id="restList">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
-      <div style="font-weight:800;font-size:14px;color:#111;">🔥 الأكثر طلباً</div>
-    </div>
-  </div>
-
-  <!-- Bottom Nav -->
-  <div class="bottom-nav">
-    <button class="nav-item active">
-      <div class="nav-bar"></div>
-      <span class="nav-icon">🏠</span>
-      <span class="nav-label" style="color:#0A3D20;">الرئيسية</span>
-    </button>
-    <button class="nav-item">
-      <span class="nav-icon">🔍</span>
-      <span class="nav-label">بحث</span>
-    </button>
-    <button class="nav-item">
-      <span class="nav-icon">🔔</span>
-      <span class="nav-label">تنبيهاتي</span>
-    </button>
-    <button class="nav-item">
-      <span class="nav-icon">👤</span>
-      <span class="nav-label">حسابي</span>
-    </button>
+  <div class="sec">
+    <div class="sec-ttl" id="lbl-choose">🍽️ اختر مطعمك</div>
+    <div class="rest-grid" id="restGrid"></div>
   </div>
 </div>
 
+<!-- ══ SCREEN 2 ══ -->
+<div class="screen" id="s2">
+  <div class="hdr">
+    <div class="hdr-top">
+      <div class="logo-row">
+        <div class="logo-box">
+          <img src="https://raw.githubusercontent.com/aaaka1403-cmd/Awfer-app/main/Awfer-logo.png" alt="Awfer">
+        </div>
+        <div class="logo-txt">
+          <div class="t1"><em>A</em>wfer</div>
+          <div class="t2">Delivery & Savings Hub</div>
+        </div>
+      </div>
+      <div class="hdr-right">
+        <button class="lang-btn" onclick="toggleLang()">EN</button>
+        <button class="back-btn show" onclick="goHome()">←</button>
+      </div>
+    </div>
+    <div class="srch">
+      <input id="mealSearch" placeholder="ابحث عن وجبة..." oninput="renderMeals()">
+      <button>بحث</button>
+    </div>
+  </div>
+  <div class="sec" style="margin-top:16px;">
+    <div class="sec-ttl" id="restTitle"></div>
+    <div class="cats" id="catsList"></div>
+    <div class="meal-list" id="mealsList"></div>
+  </div>
+</div>
+
+<!-- CART BAR -->
+<div class="cart-bar" id="cartBar" onclick="openAdvisor()">
+  <div class="cart-info">
+    <p id="cartCount">0 وجبة</p>
+    <h4 id="lbl-best">قارن الأسعار 📊</h4>
+  </div>
+  <button class="cart-cta" id="lbl-advisor">عرض المقارنة</button>
+</div>
+
+<!-- MODAL -->
+<div class="overlay" id="overlay" onclick="outsideClose(event)">
+  <div class="modal" id="modal">
+    <div class="m-handle"></div>
+    <div class="modal-ttl" id="lbl-modal-ttl">مقارنة الأسعار 📊</div>
+    <div class="modal-sub" id="lbl-modal-sub">اختر التطبيق المناسب لك</div>
+    <div class="order-box" id="orderBox"></div>
+    <div class="fee-disclaimer" id="feeDisclaimer"></div>
+    <div class="compare-ttl" id="lbl-compare-ttl">الأسعار على جميع التطبيقات</div>
+    <div class="plat-rows" id="platRows"></div>
+    <button class="close-btn" id="lbl-close" onclick="closeAdvisor()">إغلاق</button>
+  </div>
+</div>
+
+<!-- NAV -->
+<div class="nav">
+  <div class="nav-i active" onclick="goHome()"><div class="ic">🏠</div><div class="lb" id="nav1">الرئيسية</div></div>
+  <div class="nav-i"><div class="ic">🔍</div><div class="lb" id="nav2">بحث</div></div>
+  <div class="nav-i"><div class="ic">🔔</div><div class="lb" id="nav3">تنبيهاتي</div></div>
+  <div class="nav-i"><div class="ic">👤</div><div class="lb" id="nav4">حسابي</div></div>
+</div>
+
 <script>
-const RESTAURANTS = [
-  {id:1,name:"البيك",cat:"دجاج",rating:4.9,reviews:112,emoji:"🍗",color:"#C8102E",tags:["الأكثر طلباً"],eta:"20-30",minPrice:32,apps:["hunger","keeta","jahez","marsool"],free:false},
-  {id:2,name:"ماكدونالدز",cat:"برجر",rating:4.5,reviews:89,emoji:"🍔",color:"#FFC72C",tags:["24 ساعة"],eta:"15-25",minPrice:28,apps:["hunger","keeta","jahez","marsool","noon"],free:true},
-  {id:3,name:"ستاربكس",cat:"قهوة",rating:4.4,reviews:88,emoji:"☕",color:"#00704A",tags:["قهوة مميزة"],eta:"20-35",minPrice:22,apps:["hunger","keeta","jahez","marsool"],free:false},
-  {id:4,name:"بيتزا هت",cat:"بيتزا",rating:4.3,reviews:55,emoji:"🍕",color:"#EE3124",tags:["عروض العائلة"],eta:"30-45",minPrice:58,apps:["hunger","keeta","jahez","marsool","noon"],free:true},
-  {id:5,name:"كنتاكي",cat:"دجاج",rating:4.4,reviews:67,emoji:"🍗",color:"#E4002B",tags:["كلاسيك"],eta:"20-30",minPrice:32,apps:["hunger","keeta","jahez","marsool","noon"],free:false},
-  {id:6,name:"شاورمر",cat:"شاورما",rating:4.5,reviews:62,emoji:"🌮",color:"#E63946",tags:["الأكثر طلباً"],eta:"15-25",minPrice:18,apps:["hunger","keeta","jahez","marsool","noon"],free:true},
-  {id:7,name:"برجر كينج",cat:"برجر",rating:4.3,reviews:54,emoji:"🍔",color:"#FF8732",tags:["واوبر أصلي"],eta:"20-35",minPrice:30,apps:["hunger","keeta","jahez","marsool","noon"],free:false},
-  {id:8,name:"دومينوز",cat:"بيتزا",rating:4.2,reviews:43,emoji:"🍕",color:"#006491",tags:["ضمان 30 دقيقة"],eta:"25-35",minPrice:48,apps:["hunger","keeta","jahez","marsool","noon"],free:true},
-  {id:9,name:"سوشي سا",cat:"سوشي",rating:4.7,reviews:22,emoji:"🍣",color:"#1A237E",tags:["طازج يومياً"],eta:"35-50",minPrice:48,apps:["hunger","keeta","marsool","noon"],free:false},
-  {id:10,name:"باسكن روبنز",cat:"حلويات",rating:4.5,reviews:42,emoji:"🍦",color:"#F9A7C0",tags:["31 نكهة"],eta:"20-30",minPrice:45,apps:["hunger","keeta","jahez","marsool","noon"],free:false},
+const GH='https://raw.githubusercontent.com/aaaka1403-cmd/Awfer-app/main/';
+
+// ══ PLATFORMS ══
+const PL={
+  hs:     {ar:'هنقرستيشن',en:'HungerStation',color:'#c0392b',fee_normal:11,fee_disc:11,min_order:15,eta_ar:'35-50 د',eta_en:'35-50 min',link:'https://hungerstation.go.link/?c=SA&s=c&v=19824&so=mls&adj_t=1sdhhuza_1spi9ypp&adj_og_title=%D8%A7%D9%84%D8%A8%D9%8A%D9%83&adj_og_image=https://images.deliveryhero.io/image/hungerstation/restaurant/logo_ar/e2792c2827639ba97a708e7a6ae5a2a8.png'},
+  keeta:  {ar:'كيتا',en:'Keeta',color:'#1a5276',fee_normal:13,fee_disc:9,min_order:30,eta_ar:'17 د',eta_en:'17 min',link:'https://url.mykeeta.com/bBw7jcKz'},
+  toyou:  {ar:'تويو',en:'ToYou',color:'#0d6e5e',fee_normal:25,fee_disc:9,min_order:55,eta_ar:'44-53 د',eta_en:'44-53 min',link:'https://toyou.io/merchant/31c591b0-ee20-4bbe-8f68-05d3df4111bf'},
+  mandoob:{ar:'مستر مندوب',en:'Mr Mandoob',color:'#16a28a',fee_normal:23,fee_disc:23,min_order:0,eta_ar:'25-35 د',eta_en:'25-35 min',link:'https://mrmandoob.com/store/2598'},
+};
+
+// ══ TRANSLATIONS ══
+const TR={
+  ar:{
+    del:'🛵 توصيل',pic:'🏃 استلام',saved:'وفّرنا على مستخدمينا هذا الشهر',
+    compare:'نقارن بين هذه المنصات',choose:'🍽️ اختر مطعمك',
+    saveUpto:'🔥 وفّر حتى',sarS:'ر.س',
+    addBtn:'+ أضف',addedBtn:'✓ مضاف',
+    cartCount:'وجبة مختارة',bestPrice:'قارن الأسعار 📊',advisorBtn:'عرض المقارنة',
+    modalTtl:'مقارنة الأسعار 📊',modalSub:'اختر التطبيق المناسب لك',
+    orderSummary:'ملخص طلبك',subtotal:'مجموع الوجبات',
+    compareTtl:'الأسعار على جميع التطبيقات',
+    disclaimer:'⚠️ رسوم الخدمة غير معروضة وتتراوح بين 0.5 و5 ريال إضافية حسب سياسة التطبيق وقيمة طلبك.',
+    meals:'الوجبات',delivery:'التوصيل',total:'الإجمالي',eta:'وقت التوصيل',
+    minWarn:'أضف',minWarn2:'ر.س للحصول على خصم التوصيل',
+    orderNow:'اطلب الآن →',notAvail:'غير متوفر على هذا التطبيق',
+    close:'إغلاق',
+    navHome:'الرئيسية',navSearch:'بحث',navNotif:'تنبيهاتي',navAcc:'حسابي',
+    langBtn:'EN',dir:'rtl',lang:'ar',
+    restPH:'ابحث عن مطعم...',mealPH:'ابحث عن وجبة...',
+    beforeDel:'(قبل التوصيل)',priceRng:'السعر',
+  },
+  en:{
+    del:'🛵 Delivery',pic:'🏃 Pickup',saved:'Saved for our users this month',
+    compare:'We compare these platforms',choose:'🍽️ Choose restaurant',
+    saveUpto:'🔥 Save up to',sarS:'SAR',
+    addBtn:'+ Add',addedBtn:'✓ Added',
+    cartCount:'items selected',bestPrice:'Compare Prices 📊',advisorBtn:'Compare',
+    modalTtl:'Price Comparison 📊',modalSub:'Choose the app that suits you',
+    orderSummary:'Your Order',subtotal:'Meals subtotal',
+    compareTtl:'Prices on all platforms',
+    disclaimer:'⚠️ Service fees are not displayed and may range between 0.5–5 SAR depending on the platform policy and your order value.',
+    meals:'Meals',delivery:'Delivery',total:'Total',eta:'Delivery time',
+    minWarn:'Add',minWarn2:'SAR more for delivery discount',
+    orderNow:'Order now →',notAvail:'Not available on this platform',
+    close:'Close',
+    navHome:'Home',navSearch:'Search',navNotif:'Alerts',navAcc:'Account',
+    langBtn:'عربي',dir:'ltr',lang:'en',
+    restPH:'Search restaurants...',mealPH:'Search meals...',
+    beforeDel:'(before delivery)',priceRng:'Price',
+  }
+};
+
+let lang='ar',mode='delivery',currentCat='all';
+const cart={};
+function t(k){return TR[lang][k]||k;}
+function plN(pid){return lang==='ar'?PL[pid].ar:PL[pid].en;}
+function plEta(pid){return lang==='ar'?PL[pid].eta_ar:PL[pid].eta_en;}
+
+// ══ RESTAURANTS ══
+const RESTAURANTS=[
+  {id:'albaik',ar:'البيك',en:'Al Baik',cat_ar:'دجاج',cat_en:'Chicken',
+   img:'https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?w=600&q=80'},
 ];
 
-const APP_COLORS = {hunger:"#FF5A00",keeta:"#E60000",jahez:"#003087",marsool:"#00A651",noon:"#C8A200"};
-const APP_LABELS = {hunger:"H",keeta:"K",jahez:"ج",marsool:"م",noon:"N"};
+// ══ MEALS ══
+const MEALS=[
+  {id:'ch4',   ar:'وجبة دجاج البيك 4 قطع',       en:'Al Baik Chicken Meal 4pc',       cat:'chicken',    img:GH+'chicken-meal-4pc.jpg',          prices:{hs:22,   keeta:22,   toyou:22,   mandoob:18}},
+  {id:'ch4h',  ar:'وجبة دجاج البيك حراق 4 قطع',   en:'Spicy Chicken Meal 4pc',         cat:'chicken',    img:GH+'chicken-meal-4pc.jpg',          prices:{hs:22,   keeta:22,   toyou:22,   mandoob:18}},
+  {id:'ch8',   ar:'وجبة دجاج البيك 8 قطع',        en:'Al Baik Chicken Meal 8pc',       cat:'chicken',    img:GH+'chicken-meal-8pc.jpg',          prices:{hs:null, keeta:42,   toyou:null, mandoob:35}},
+  {id:'ms10',  ar:'وجبة دجاج مسحب 10 قطع',        en:'Chicken Nuggets Meal 10pc',      cat:'chicken',    img:GH+'chicken-meal-8pc.jpg',          prices:{hs:22,   keeta:22,   toyou:22,   mandoob:18}},
+  {id:'ms7',   ar:'وجبة دجاج مسحب 7 قطع',         en:'Chicken Nuggets Meal 7pc',       cat:'chicken',    img:GH+'chicken-meal-4pc.jpg',          prices:{hs:20,   keeta:20,   toyou:20,   mandoob:15}},
+  {id:'cfb',   ar:'برجر فيليه دجاج',              en:'Chicken Fillet Burger',          cat:'sandwiches', img:GH+'chicken-fillet-burger.jpg',     prices:{hs:7,    keeta:7,    toyou:6.5,  mandoob:5.5}},
+  {id:'cfbh',  ar:'برجر فيليه دجاج حراق',         en:'Spicy Chicken Fillet Burger',    cat:'sandwiches', img:GH+'chicken-fillet-burger.jpg',     prices:{hs:7,    keeta:7,    toyou:7,    mandoob:5.5}},
+  {id:'bigb',  ar:'بيج بيك',                      en:'Big Baik',                       cat:'sandwiches', img:GH+'big-baik.jpg',                  prices:{hs:null, keeta:null, toyou:16,   mandoob:null}},
+  {id:'bigbh', ar:'بيج بيك حراق',                 en:'Big Baik Spicy',                 cat:'sandwiches', img:GH+'big-baik.jpg',                  prices:{hs:17.5, keeta:17.5, toyou:16,   mandoob:null}},
+  {id:'bigbc', ar:'بيج بيك بالجبنة',              en:'Big Baik with Cheese',           cat:'sandwiches', img:GH+'big-baik-cheese.jpg',           prices:{hs:null, keeta:18,   toyou:null, mandoob:16}},
+  {id:'dbl',   ar:'دبل بيك',                      en:'Double Baik',                    cat:'sandwiches', img:GH+'double-baik.jpg',               prices:{hs:10.5, keeta:10.5, toyou:10,   mandoob:9}},
+  {id:'crbk',  ar:'كرسبي بيك فيليه',              en:'Crispy Baik Fillet',             cat:'sandwiches', img:GH+'chicken-fillet-sandwich.jpg',   prices:{hs:8,    keeta:8,    toyou:8,    mandoob:null}},
+  {id:'cfs',   ar:'ساندويش فيليه الدجاج',         en:'Chicken Fillet Sandwich',        cat:'sandwiches', img:GH+'chicken-fillet-sandwich.jpg',   prices:{hs:10.5, keeta:10.5, toyou:9.5,  mandoob:7.5}},
+  {id:'twk',   ar:'طاووق',                        en:'Tawuk',                          cat:'sandwiches', img:GH+'tawook.jpg',                    prices:{hs:10.5, keeta:10.5, toyou:null, mandoob:7.5}},
+  {id:'shwg',  ar:'شاورما البيك بصلصة الثوم',     en:'Shawarma with Garlic Sauce',     cat:'sandwiches', img:GH+'shawarma-garlic.jpg',           prices:{hs:8.5,  keeta:8.5,  toyou:7.5,  mandoob:6}},
+  {id:'shwt',  ar:'شاورما البيك بصلصة الطحينة',   en:'Shawarma with Tahini Sauce',     cat:'sandwiches', img:GH+'shawarma-tahini.jpg',           prices:{hs:8.5,  keeta:8.5,  toyou:null, mandoob:6}},
+  {id:'sajd',  ar:'صاج دي لايت',                  en:'Saj DeLite',                     cat:'sandwiches', img:GH+'saj-d-lite.jpg',                prices:{hs:10.5, keeta:10.5, toyou:null, mandoob:7.5}},
+  {id:'supg',  ar:'سوبر بيك دجاج مشوي',           en:'Super Baik Grilled Chicken',     cat:'sandwiches', img:GH+'super-baik-grilled-chicken.jpg',prices:{hs:19.5, keeta:19.5, toyou:19.5, mandoob:15}},
+  {id:'bkzc',  ar:'بيكيز صدور الدجاج',            en:'Baikeez Chest',                  cat:'sandwiches', img:GH+'chicken-meal-4pc.jpg',          prices:{hs:null, keeta:16.5, toyou:15.5, mandoob:13}},
+  {id:'fsb',   ar:'برجر فيليه سمك',               en:'Fish Fillet Burger',             cat:'seafood',    img:GH+'fish-fillet-sandwich.jpg',      prices:{hs:8.5,  keeta:8.5,  toyou:7.5,  mandoob:null}},
+  {id:'fss',   ar:'ساندويش فيليه سمك',            en:'Fish Fillet Sandwich',           cat:'seafood',    img:GH+'fish-fillet-sandwich.jpg',      prices:{hs:12,   keeta:12,   toyou:11,   mandoob:8.5}},
+  {id:'fsm',   ar:'وجبة فيليه السمك',             en:'Fish Fillet Meal',               cat:'seafood',    img:GH+'fish-fillet-meal.jpg',          prices:{hs:null, keeta:30.5, toyou:28.5, mandoob:24.5}},
+  {id:'shs',   ar:'ساندويش جمبري',                en:'Shrimp Sandwich',                cat:'seafood',    img:GH+'shrimp-sandwich.jpg',           prices:{hs:16,   keeta:16,   toyou:15,   mandoob:11.5}},
+  {id:'shsp',  ar:'ساندويش جمبري سوبر بيك',       en:'Super Baik Shrimp',              cat:'seafood',    img:GH+'super-baik-shrimp.jpg',         prices:{hs:24.5, keeta:24.5, toyou:24.5, mandoob:20.5}},
+  {id:'shv',   ar:'وجبة الجمبري الاقتصادية',      en:'Value Shrimp Meal',              cat:'seafood',    img:GH+'economy-shrimp-meal.jpg',       prices:{hs:null, keeta:29.5, toyou:28.5, mandoob:24}},
+  {id:'sh10',  ar:'وجبة الجمبري الجامبو 10 قطع',  en:'Jumbo Shrimp Meal 10pc',         cat:'seafood',    img:GH+'economy-shrimp-meal.jpg',       prices:{hs:null, keeta:38.5, toyou:37.5, mandoob:32}},
+  {id:'sh12',  ar:'وجبة الجمبري الجامبو 12 قطعة', en:'Jumbo Shrimp Meal 12pc',         cat:'seafood',    img:GH+'economy-shrimp-meal.jpg',       prices:{hs:null, keeta:51.5, toyou:50.5, mandoob:43.5}},
+  {id:'fry',   ar:'بطاطس',                        en:'French Fries',                   cat:'sides',      img:GH+'fries.jpg',                     prices:{hs:7,    keeta:7,    toyou:6.5,  mandoob:4}},
+  {id:'fryg',  ar:'بطاطس مع صلصة ثوم',            en:'Fries with Garlic Sauce',        cat:'sides',      img:GH+'fries-garlic-sauce.jpg',        prices:{hs:null, keeta:null, toyou:7.5,  mandoob:5}},
+  {id:'chips', ar:'شيبس البيك',                   en:'Baik Chips',                     cat:'sides',      img:GH+'baik-chips.jpg',                prices:{hs:7,    keeta:7,    toyou:6.5,  mandoob:4}},
+  {id:'corn',  ar:'ذرة',                          en:'Corn on the Cob',                cat:'sides',      img:GH+'corn-cob.jpg',                  prices:{hs:8,    keeta:8,    toyou:7.5,  mandoob:6}},
+  {id:'corncup',ar:'كوب الذرة',                   en:'Corn in a Cup',                  cat:'sides',      img:GH+'corn-cup.jpg',                  prices:{hs:8,    keeta:8,    toyou:7.5,  mandoob:6}},
+  {id:'hms',   ar:'حمص',                          en:'Hummus',                         cat:'sides',      img:GH+'hummus.jpg',                    prices:{hs:7,    keeta:7,    toyou:6.5,  mandoob:5}},
+  {id:'cls',   ar:'سلطة ملفوف',                   en:'Coleslaw',                       cat:'sides',      img:GH+'coleslaw.jpg',                  prices:{hs:7,    keeta:7,    toyou:6.5,  mandoob:5}},
+  {id:'snk',   ar:'سناك دجاج مسحب',               en:'Chicken Nugget Snack',           cat:'sides',      img:GH+'chicken-snack.jpg',             prices:{hs:7,    keeta:6.5,  toyou:6.5,  mandoob:5}},
+  {id:'snk5',  ar:'سناك دجاج مسحب 5 قطع',         en:'Nugget Snack 5pc',               cat:'sides',      img:GH+'chicken-snack-5pc.jpg',         prices:{hs:7,    keeta:6.5,  toyou:6.5,  mandoob:5}},
+  {id:'brd',   ar:'خبز',                          en:'Bread Buns',                     cat:'sides',      img:GH+'bread.jpg',                     prices:{hs:2,    keeta:2,    toyou:2,    mandoob:1.25}},
+  {id:'gsc',   ar:'صلصة ثوم',                     en:'Garlic Sauce',                   cat:'sides',      img:GH+'garlic-sauce.jpg',              prices:{hs:2,    keeta:2,    toyou:1.5,  mandoob:1}},
+  {id:'csc',   ar:'صلصة كوكتيل',                  en:'Cocktail Sauce',                 cat:'sides',      img:GH+'cocktail-sauce.jpg',            prices:{hs:2.5,  keeta:2.5,  toyou:2,    mandoob:1.75}},
+  {id:'mml',   ar:'معمول البيك',                  en:'Al Baik Maamoul',                cat:'desserts',   img:'https://images.unsplash.com/photo-1607920591413-4ec007e70023?w=400&q=80',prices:{hs:null,keeta:null,toyou:1.5,mandoob:0.5}},
+  {id:'icec',  ar:'آيس كريم شوكولاته',            en:'Chocolate Ice Cream',            cat:'desserts',   img:GH+'ice-cream-chocolate.jpg',       prices:{hs:null, keeta:null, toyou:null, mandoob:2.5}},
+  {id:'ices',  ar:'آيس كريم فراولة',              en:'Strawberry Ice Cream',           cat:'desserts',   img:GH+'ice-cream-strawberry.jpg',      prices:{hs:null, keeta:null, toyou:null, mandoob:2.5}},
+  {id:'pep',   ar:'بيبسي',                        en:'Pepsi',                          cat:'drinks',     img:'https://images.unsplash.com/photo-1629203851122-3726ecdf080e?w=400&q=80',prices:{hs:4.5,keeta:4.5,toyou:4,mandoob:3.5}},
+  {id:'7up',   ar:'سفن أب',                       en:'Seven Up',                       cat:'drinks',     img:GH+'7up.jpg',                       prices:{hs:4.5,  keeta:4.5,  toyou:4,    mandoob:3.5}},
+  {id:'mir',   ar:'ميرندا',                       en:'Mirinda',                        cat:'drinks',     img:'https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=400&q=80',prices:{hs:4.5,keeta:4,toyou:4,mandoob:3.5}},
+  {id:'lpt',   ar:'ليبتون آيس تي ليمون',          en:'Lipton Ice Tea Lemon',           cat:'drinks',     img:'https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=400&q=80',prices:{hs:5.5,keeta:5,toyou:5,mandoob:4}},
+  {id:'ljc',   ar:'عصير تفاح',                    en:'Apple Juice',                    cat:'drinks',     img:GH+'apple-juice.jpg',               prices:{hs:3.5,  keeta:null, toyou:3,    mandoob:3}},
+  {id:'wtr',   ar:'ماء',                          en:'Water',                          cat:'drinks',     img:GH+'water.jpg',                     prices:{hs:2,    keeta:2,    toyou:2,    mandoob:1}},
+];
 
-let currentMode = "delivery";
-let currentCity = "الرياض";
+const CATS=[
+  {id:'all',ar:'الكل',en:'All',icon:'🍽️'},
+  {id:'chicken',ar:'دجاج',en:'Chicken',icon:'🍗'},
+  {id:'sandwiches',ar:'ساندويشات',en:'Sandwiches',icon:'🥪'},
+  {id:'seafood',ar:'مأكولات بحرية',en:'Seafood',icon:'🦐'},
+  {id:'sides',ar:'جانبية',en:'Sides',icon:'🍟'},
+  {id:'desserts',ar:'حلويات',en:'Desserts',icon:'🍦'},
+  {id:'drinks',ar:'مشروبات',en:'Drinks',icon:'🥤'},
+];
 
-function renderRests(data) {
-  const list = document.getElementById("restList");
-  const header = list.firstElementChild;
-  list.innerHTML = "";
-  list.appendChild(header);
-  data.forEach(r => {
-    const price = currentMode === "pickup" ? r.minPrice : r.minPrice + 5;
-    const card = document.createElement("div");
-    card.className = "rest-card";
-    card.innerHTML = `
-      <div class="rest-cover" style="background:linear-gradient(135deg,${r.color}dd,${r.color}88)">
-        <span class="rest-emoji">${r.emoji}</span>
-        ${r.free ? '<div class="rest-badge">🛵 مجاني</div>' : ""}
-        <div class="rest-eta">⏱ ${r.eta} د</div>
-      </div>
+const FALLBACK={chicken:'https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?w=400&q=80',sandwiches:'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&q=80',seafood:'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400&q=80',sides:'https://images.unsplash.com/photo-1576107232684-1279f390859f?w=400&q=80',desserts:'https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=400&q=80',drinks:'https://images.unsplash.com/photo-1554866585-cd94860890b7?w=400&q=80'};
+
+// ══ LANG ══
+function toggleLang(){lang=lang==='ar'?'en':'ar';applyLang();}
+function applyLang(){
+  const d=TR[lang];
+  document.documentElement.lang=d.lang;document.documentElement.dir=d.dir;
+  document.querySelectorAll('.lang-btn').forEach(b=>b.textContent=d.langBtn);
+  document.getElementById('lbl-del').textContent=d.del;
+  document.getElementById('lbl-pic').textContent=d.pic;
+  document.getElementById('restSearch').placeholder=d.restPH;
+  document.getElementById('mealSearch').placeholder=d.mealPH;
+  document.getElementById('lbl-saved').textContent=d.saved;
+  document.getElementById('lbl-compare').textContent=d.compare;
+  document.getElementById('lbl-choose').textContent=d.choose;
+  document.getElementById('lbl-best').textContent=d.bestPrice;
+  document.getElementById('lbl-advisor').textContent=d.advisorBtn;
+  document.getElementById('lbl-modal-ttl').textContent=d.modalTtl;
+  document.getElementById('lbl-modal-sub').textContent=d.modalSub;
+  document.getElementById('lbl-compare-ttl').textContent=d.compareTtl;
+  document.getElementById('lbl-close').textContent=d.close;
+  document.getElementById('nav1').textContent=d.navHome;
+  document.getElementById('nav2').textContent=d.navSearch;
+  document.getElementById('nav3').textContent=d.navNotif;
+  document.getElementById('nav4').textContent=d.navAcc;
+  renderRestaurants();
+  if(document.getElementById('s2').classList.contains('active'))renderMeals();
+}
+
+// ══ DELIVERY FEE ══
+function getDeliveryFee(pid,mealsTotal){
+  if(mode==='pickup')return 0;
+  const p=PL[pid];
+  return mealsTotal>=p.min_order?p.fee_disc:p.fee_normal;
+}
+function getMinGap(pid,mealsTotal){
+  if(mode==='pickup')return 0;
+  const p=PL[pid];
+  if(p.min_order===0||mealsTotal>=p.min_order)return 0;
+  return +(p.min_order-mealsTotal).toFixed(1);
+}
+function calcTotal(pid){
+  let sum=0;
+  for(const[id,qty]of Object.entries(cart)){
+    if(!qty)continue;
+    const m=MEALS.find(x=>x.id===id);if(!m)continue;
+    const p=m.prices[pid];
+    if(p===null||p===undefined)return null;
+    sum+=p*qty;
+  }
+  const fee=getDeliveryFee(pid,sum);
+  return{meals:+sum.toFixed(2),fee,total:+(sum+fee).toFixed(2)};
+}
+
+function cartCount(){return Object.values(cart).reduce((a,b)=>a+(b||0),0);}
+function updateCartBar(){
+  const n=cartCount();
+  const bar=document.getElementById('cartBar');
+  if(n>0){bar.classList.add('show');document.getElementById('cartCount').textContent=n+' '+t('cartCount');}
+  else bar.classList.remove('show');
+}
+function priceRange(m){const v=Object.values(m.prices).filter(x=>x!==null);return v.length?{min:Math.min(...v),max:Math.max(...v)}:null;}
+
+// ══ S1 ══
+function setMode(m){mode=m;document.getElementById('btnD').classList.toggle('active',m==='delivery');document.getElementById('btnP').classList.toggle('active',m==='pickup');}
+function setCity(el){document.querySelectorAll('.city').forEach(b=>b.classList.remove('active'));el.classList.add('active');}
+
+function renderRestaurants(){
+  const q=(document.getElementById('restSearch').value||'').toLowerCase();
+  let maxSave=0;
+  MEALS.forEach(m=>{
+    const vals=Object.entries(m.prices).filter(([,v])=>v!==null).map(([pid,v])=>v+(mode==='delivery'?PL[pid].fee_disc:0));
+    if(vals.length>=2)maxSave=Math.max(maxSave,+(Math.max(...vals)-Math.min(...vals)).toFixed(1));
+  });
+  document.getElementById('restGrid').innerHTML=RESTAURANTS.filter(r=>!q||r.ar.includes(q)||r.en.toLowerCase().includes(q)).map(r=>`
+    <div class="rest-card" onclick="openRestaurant('${r.id}')">
+      <div class="rest-img"><img src="${r.img}" onerror="this.src='${FALLBACK.chicken}'"><div class="rest-overlay"></div></div>
       <div class="rest-body">
-        <div class="rest-row">
-          <div>
-            <div class="rest-name">${r.name}</div>
-            <div class="rest-meta">⭐${r.rating} · ${r.reviews}k · ${r.cat}</div>
-          </div>
-          <div class="rest-price-box">
-            <div class="rest-price-label">يبدأ</div>
-            <div class="rest-price">${price}</div>
-            <div class="rest-price-label">ر.س</div>
-          </div>
+        <div class="rest-top">
+          <div><div class="rest-name">${lang==='ar'?r.ar:r.en}</div><div class="rest-cat">${lang==='ar'?r.cat_ar:r.cat_en}</div></div>
+          <div class="save-pill"><span>${t('saveUpto')} ${maxSave} ${t('sarS')}</span></div>
         </div>
-        <div class="rest-tags">
-          ${r.tags.map(t=>`<span class="tag">${t}</span>`).join("")}
-        </div>
-        <div class="rest-apps">
-          <div class="rest-apps-label">متوفر في</div>
-          <div class="rest-apps-dots">
-            ${r.apps.map(a=>`<div class="app-dot" style="background:${APP_COLORS[a]}">${APP_LABELS[a]}</div>`).join("")}
+      </div>
+    </div>`).join('');
+}
+
+function openRestaurant(id){
+  Object.keys(cart).forEach(k=>delete cart[k]);
+  updateCartBar();currentCat='all';
+  const r=RESTAURANTS.find(x=>x.id===id);
+  document.getElementById('restTitle').textContent='🏆 '+(lang==='ar'?r.ar:r.en);
+  showScreen('s2');renderCats();renderMeals();
+}
+function goHome(){showScreen('s1');Object.keys(cart).forEach(k=>delete cart[k]);updateCartBar();}
+function showScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');window.scrollTo(0,0);}
+
+// ══ S2 ══
+function renderCats(){
+  document.getElementById('catsList').innerHTML=CATS.map(c=>`
+    <div class="cat ${c.id===currentCat?'active':''}" onclick="setCat('${c.id}')">
+      <div class="cat-ic">${c.icon}</div><span>${lang==='ar'?c.ar:c.en}</span>
+    </div>`).join('');
+}
+function setCat(c){currentCat=c;renderCats();renderMeals();}
+
+function renderMeals(){
+  const q=(document.getElementById('mealSearch').value||'').trim();
+  const filtered=MEALS.filter(m=>(currentCat==='all'||m.cat===currentCat)&&(!q||m.ar.includes(q)||m.en.toLowerCase().includes(q.toLowerCase())));
+  if(!filtered.length){document.getElementById('mealsList').innerHTML=`<p style="text-align:center;padding:30px;color:var(--muted);">${t('notAvail')}</p>`;return;}
+  document.getElementById('mealsList').innerHTML=filtered.map(m=>{
+    const rng=priceRange(m);const qty=cart[m.id]||0;
+    const catObj=CATS.find(c=>c.id===m.cat);
+    return`<div class="meal-card">
+      <div class="meal-img-w"><img src="${m.img}" onerror="this.src='${FALLBACK[m.cat]||FALLBACK.chicken}'"><div class="meal-badge">${lang==='ar'?catObj?.ar:catObj?.en}</div></div>
+      <div class="meal-body">
+        <div class="meal-name">${lang==='ar'?m.ar:m.en}</div>
+        ${rng?`<div class="price-range"><span class="pr-lbl">${t('priceRng')}</span><span class="pr-min">${rng.min} ${t('sarS')}</span><span class="pr-sep">—</span><span class="pr-max">${rng.max} ${t('sarS')}</span><span class="pr-note">${t('beforeDel')}</span></div>`:`<div style="font-size:12px;color:var(--muted);margin-bottom:10px;">${t('notAvail')}</div>`}
+        <div class="meal-footer">
+          <div class="qty-ctrl">
+            <button class="qty-btn" onclick="chgQty('${m.id}',-1)">−</button>
+            <span class="qty-num" id="qty-${m.id}">${qty}</span>
+            <button class="qty-btn" onclick="chgQty('${m.id}',1)">+</button>
           </div>
+          <button class="add-btn ${qty>0?'added':''}" id="add-${m.id}" onclick="toggleAdd('${m.id}')">${qty>0?t('addedBtn'):t('addBtn')}</button>
         </div>
-      </div>`;
-    list.appendChild(card);
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function chgQty(id,d){cart[id]=Math.max(0,(cart[id]||0)+d);refreshUI(id);updateCartBar();}
+function toggleAdd(id){cart[id]=(cart[id]||0)>0?0:1;refreshUI(id);updateCartBar();}
+function refreshUI(id){
+  const q=cart[id]||0;
+  const qEl=document.getElementById('qty-'+id);const aEl=document.getElementById('add-'+id);
+  if(qEl)qEl.textContent=q;
+  if(aEl){aEl.textContent=q>0?t('addedBtn'):t('addBtn');aEl.className='add-btn'+(q>0?' added':'');}
+}
+
+// ══ ADVISOR ══
+function openAdvisor(){if(!cartCount())return;buildAdvisor();document.getElementById('overlay').classList.add('open');}
+
+function buildAdvisor(){
+  const items=Object.entries(cart).filter(([,q])=>q>0);
+
+  // ORDER BOX
+  let sub=0;
+  let oHtml=`<div class="order-ttl">${t('orderSummary')}</div>`;
+  items.forEach(([id,qty])=>{
+    const m=MEALS.find(x=>x.id===id);if(!m)return;
+    const vals=Object.values(m.prices).filter(v=>v!==null);
+    const base=vals.length?Math.min(...vals):0;
+    sub+=base*qty;
+    oHtml+=`<div class="o-item">
+      <div class="o-left"><div class="o-name">${lang==='ar'?m.ar:m.en}</div><div class="o-qty">× ${qty}</div></div>
+      <div class="o-price">${(base*qty).toFixed(1)} ${t('sarS')}</div>
+      <button class="o-del" onclick="removeItem('${id}')">🗑</button>
+    </div>`;
   });
+  oHtml+=`<div class="o-subtotal"><span class="o-sub-lbl">${t('subtotal')}</span><span class="o-sub-val">${sub.toFixed(1)} ${t('sarS')}</span></div>`;
+  document.getElementById('orderBox').innerHTML=oHtml;
+
+  // DISCLAIMER
+  document.getElementById('feeDisclaimer').textContent=t('disclaimer');
+
+  // PLATFORMS — sort by total
+  const results=Object.keys(PL).map(pid=>{
+    const r=calcTotal(pid);
+    return r?{pid,...r}:null;
+  }).filter(Boolean).sort((a,b)=>a.total-b.total);
+
+  if(!results.length){document.getElementById('platRows').innerHTML=`<p style="color:var(--muted);text-align:center;padding:20px;">${t('notAvail')}</p>`;return;}
+
+  const minTotal=results[0].total;
+
+  document.getElementById('platRows').innerHTML=results.map(r=>{
+    const isCheapest=r.total===minTotal;
+    const gap=getMinGap(r.pid,r.meals);
+
+    // أسعار كل وجبة على هذا التطبيق — الأرخص بالأخضر
+    const mealRows=items.map(([id,qty])=>{
+      const m=MEALS.find(x=>x.id===id);if(!m)return'';
+      const p=m.prices[r.pid];
+      if(p===null||p===undefined)return`<tr><td class="bk-lbl">${lang==='ar'?m.ar:m.en} ×${qty}</td><td style="color:var(--muted);font-size:11px;">${t('notAvail')}</td></tr>`;
+      const allP=Object.values(m.prices).filter(v=>v!==null);
+      const isMinMeal=p===Math.min(...allP);
+      return`<tr><td class="bk-lbl">${lang==='ar'?m.ar:m.en} ×${qty}</td><td class="bk-val${isMinMeal?' green':''}">${(p*qty).toFixed(1)} ${t('sarS')}</td></tr>`;
+    }).join('');
+
+    return`<div class="plat-row ${isCheapest?'cheapest':''}">
+      <div class="pr-head">
+        <div class="pr-name-row">
+          <div class="pr-dot" style="background:${PL[r.pid].color}"></div>
+          <div class="pr-name">${plN(r.pid)}</div>
+        </div>
+        <div class="pr-total ${isCheapest?'green':''}">${r.total.toFixed(1)} ${t('sarS')}</div>
+      </div>
+      <table class="bk-table">
+        ${mealRows}
+        <tr class="bk-divider"><td class="bk-lbl">${t('meals')}</td><td class="bk-val">${r.meals.toFixed(1)} ${t('sarS')}</td></tr>
+        ${mode==='delivery'?`<tr><td class="bk-lbl">${t('delivery')}</td><td class="bk-val ${isCheapest?'green':''}">${r.fee.toFixed(1)} ${t('sarS')}</td></tr>`:''}
+        <tr class="bk-bold"><td>${t('total')}</td><td class="${isCheapest?'green':''}">${r.total.toFixed(1)} ${t('sarS')}</td></tr>
+        <tr class="bk-eta"><td>${t('eta')}</td><td>${plEta(r.pid)}</td></tr>
+      </table>
+      ${gap>0&&mode==='delivery'?`<div class="min-warn">⚠️ ${t('minWarn')} ${gap} ${t('sarS')} ${t('minWarn2')}</div>`:''}
+      ${mode==='delivery'?`<a href="${PL[r.pid].link}" target="_blank" class="order-btn ${isCheapest?'primary':'secondary'}">${t('orderNow')} ${plN(r.pid)}</a>`:''}
+    </div>`;
+  }).join('');
 }
 
-function setMode(mode, btn) {
-  currentMode = mode;
-  document.querySelectorAll(".toggle-btn").forEach(b => {
-    b.className = "toggle-btn inactive";
-  });
-  btn.className = "toggle-btn active";
-  renderRests(RESTAURANTS);
+function removeItem(id){
+  delete cart[id];
+  updateCartBar();
+  if(cartCount()===0){closeAdvisor();return;}
+  buildAdvisor();
 }
+function closeAdvisor(){document.getElementById('overlay').classList.remove('open');}
+function outsideClose(e){if(e.target===document.getElementById('overlay'))closeAdvisor();}
 
-function setCity(city, btn) {
-  currentCity = city;
-  document.querySelectorAll(".city-btn").forEach(b => b.classList.remove("active"));
-  btn.classList.add("active");
-  renderRests(RESTAURANTS);
-}
-
-function filterRests() {
-  const q = document.getElementById("searchInput").value.toLowerCase();
-  const filtered = RESTAURANTS.filter(r =>
-    r.name.includes(q) || r.cat.includes(q)
-  );
-  renderRests(filtered);
-}
-
-renderRests(RESTAURANTS);
+applyLang();
+renderRestaurants();
 </script>
 </body>
 </html>
