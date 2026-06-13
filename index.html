@@ -548,18 +548,24 @@ function renderRestaurants(){
   if(!RESTAURANTS.length)return;
   const q=(document.getElementById('restSearch').value||'').toLowerCase();
   let maxSave=0;
-  MEALS.forEach(m=>{
-    const pids=Object.keys(PL);
-    const vals=pids.map(pid=>m.prices[pid]).filter(v=>v!==null&&v!==undefined);
-    if(vals.length>=2)maxSave=Math.max(maxSave,+(Math.max(...vals)-Math.min(...vals)).toFixed(1));
-  });
+  if(MEALS.length && Object.keys(PL).length){
+    MEALS.forEach(m=>{
+      if(!m.prices) return;
+      const vals=Object.values(m.prices).filter(v=>v!==null&&v!==undefined&&!isNaN(v)&&v>0);
+      if(vals.length>=2){
+        const diff = +(Math.max(...vals)-Math.min(...vals)).toFixed(1);
+        if(!isNaN(diff)) maxSave=Math.max(maxSave, diff);
+      }
+    });
+  }
+  if(isNaN(maxSave)||maxSave===0) maxSave=0;
   document.getElementById('restGrid').innerHTML=RESTAURANTS.filter(r=>!q||r.ar.includes(q)||r.en.toLowerCase().includes(q)).map(r=>`
     <div class="rest-card" onclick="openRestaurant('${r.id}')">
       <div class="rest-img"><img src="${r.img}" onerror="this.src='${FALLBACK_IMG.chicken}'"><div class="rest-overlay"></div></div>
       <div class="rest-body">
         <div class="rest-top">
           <div><div class="rest-name">${lang==='ar'?r.ar:r.en}</div><div class="rest-cat">${lang==='ar'?r.cat_ar:r.cat_en}</div></div>
-          <div class="save-pill"><span>${t('saveUpto')} ${maxSave} ${t('sarS')}</span></div>
+          <div class="save-pill"><span>${maxSave > 0 ? t('saveUpto')+' '+maxSave+' '+t('sarS') : '🔥 قارن الأسعار'}</span></div>
         </div>
       </div>
     </div>`).join('');
