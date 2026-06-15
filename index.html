@@ -214,6 +214,7 @@ body{font-family:'Tajawal',sans-serif;background:var(--beige);color:var(--text);
       <div class="pchip"><div class="pico" style="background:#1a5276">K</div><span>كيتا</span></div>
       <div class="pchip"><div class="pico" style="background:#0d6e5e">T</div><span>تويو</span></div>
       <div class="pchip"><div class="pico" style="background:#16a28a">M</div><span>مستر مندوب</span></div>
+      <div class="pchip"><div class="pico" style="background:#27ae60">J</div><span>جاهز</span></div>
     </div>
   </div>
   <div class="sec">
@@ -354,43 +355,44 @@ var PL_FB = {
   hs:      {ar:'هنقرستيشن', en:'HungerStation', color:'#c0392b', fn:11, fd:11, mo:15, ea:'35-50 د', ee:'35-50 min', link:'https://hungerstation.go.link/?c=SA&s=c&v=19824&so=mls&adj_t=1sdhhuza_1spi9ypp'},
   keeta:   {ar:'كيتا',      en:'Keeta',         color:'#1a5276', fn:13, fd:9,  mo:30, ea:'17 د',    ee:'17 min',    link:'https://url.mykeeta.com/bBw7jcKz'},
   toyou:   {ar:'تويو',      en:'ToYou',         color:'#0d6e5e', fn:25, fd:9,  mo:55, ea:'44-53 د', ee:'44-53 min', link:'https://toyou.io/merchant/31c591b0-ee20-4bbe-8f68-05d3df4111bf'},
-  mandoob: {ar:'مستر مندوب',en:'Mr Mandoob',    color:'#16a28a', fn:23, fd:23, mo:0,  ea:'25-35 د', ee:'25-35 min', link:'https://mrmandoob.com/store/2598'}
+  mandoob: {ar:'مستر مندوب',en:'Mr Mandoob',    color:'#16a28a', fn:23, fd:23, mo:0,  ea:'25-35 د', ee:'25-35 min', link:'https://mrmandoob.com/store/2598'},
+  jahez:   {ar:'جاهز',     en:'Jahez',          color:'#27ae60', fn:10, fd:10, mo:20, ea:'30-45 د', ee:'30-45 min', link:'https://www.jahez.net'}
 };
 
 // ── MEALS FALLBACK ──
 var M = GH;
 var MEALS_FB = [
-  {id:'ch4',  ar:'وجبة دجاج البيك 4 قطع',     en:'Chicken Meal 4pc',           cat:'chicken',    img:M+'chicken-meal-4pc.jpg',        p:{hs:22,   keeta:22,   toyou:22,   mandoob:18}},
-  {id:'ch8',  ar:'وجبة دجاج البيك 8 قطع',     en:'Chicken Meal 8pc',           cat:'chicken',    img:M+'chicken-meal-8pc.jpg',        p:{hs:null, keeta:42,   toyou:null, mandoob:35}},
-  {id:'ms10', ar:'وجبة دجاج مسحب 10 قطع',     en:'Nuggets Meal 10pc',          cat:'chicken',    img:M+'chicken-meal-8pc.jpg',        p:{hs:22,   keeta:22,   toyou:22,   mandoob:18}},
-  {id:'ms7',  ar:'وجبة دجاج مسحب 7 قطع',      en:'Nuggets Meal 7pc',           cat:'chicken',    img:M+'chicken-meal-4pc.jpg',        p:{hs:20,   keeta:20,   toyou:20,   mandoob:15}},
-  {id:'cfb',  ar:'برجر فيليه دجاج',            en:'Chicken Fillet Burger',      cat:'sandwiches', img:M+'chicken-fillet-burger.jpg',   p:{hs:7,    keeta:7,    toyou:6.5,  mandoob:5.5}},
-  {id:'cfbh', ar:'برجر فيليه دجاج حراق',       en:'Spicy Fillet Burger',        cat:'sandwiches', img:M+'chicken-fillet-burger.jpg',   p:{hs:7,    keeta:7,    toyou:7,    mandoob:5.5}},
-  {id:'bigb', ar:'بيج بيك',                    en:'Big Baik',                   cat:'sandwiches', img:M+'big-baik.jpg',                p:{hs:null, keeta:null, toyou:16,   mandoob:null}},
-  {id:'bigbh',ar:'بيج بيك حراق',               en:'Big Baik Spicy',             cat:'sandwiches', img:M+'big-baik.jpg',                p:{hs:17.5, keeta:17.5, toyou:16,   mandoob:null}},
-  {id:'bigbc',ar:'بيج بيك بالجبنة',            en:'Big Baik with Cheese',       cat:'sandwiches', img:M+'big-baik-cheese.jpg',         p:{hs:null, keeta:18,   toyou:null, mandoob:16}},
-  {id:'dbl',  ar:'دبل بيك',                    en:'Double Baik',                cat:'sandwiches', img:M+'double-baik.jpg',             p:{hs:10.5, keeta:10.5, toyou:10,   mandoob:9}},
-  {id:'cfs',  ar:'ساندويش فيليه الدجاج',       en:'Chicken Fillet Sandwich',    cat:'sandwiches', img:M+'chicken-fillet-sandwich.jpg', p:{hs:10.5, keeta:10.5, toyou:9.5,  mandoob:7.5}},
-  {id:'twk',  ar:'طاووق',                      en:'Tawuk',                      cat:'sandwiches', img:M+'tawook.jpg',                  p:{hs:10.5, keeta:10.5, toyou:null, mandoob:7.5}},
-  {id:'shwg', ar:'شاورما بصلصة الثوم',         en:'Shawarma Garlic',            cat:'sandwiches', img:M+'shawarma-garlic.jpg',         p:{hs:8.5,  keeta:8.5,  toyou:7.5,  mandoob:6}},
-  {id:'supg', ar:'سوبر بيك دجاج مشوي',         en:'Super Baik Grilled',         cat:'sandwiches', img:M+'super-baik-grilled-chicken.jpg', p:{hs:19.5,keeta:19.5,toyou:19.5,mandoob:15}},
-  {id:'shs',  ar:'ساندويش جمبري',              en:'Shrimp Sandwich',            cat:'seafood',    img:M+'shrimp-sandwich.jpg',         p:{hs:16,   keeta:16,   toyou:15,   mandoob:11.5}},
-  {id:'fss',  ar:'ساندويش فيليه سمك',          en:'Fish Fillet Sandwich',       cat:'seafood',    img:M+'fish-fillet-sandwich.jpg',    p:{hs:12,   keeta:12,   toyou:11,   mandoob:8.5}},
-  {id:'fsm',  ar:'وجبة فيليه السمك',           en:'Fish Fillet Meal',           cat:'seafood',    img:M+'fish-fillet-meal.jpg',        p:{hs:null, keeta:30.5, toyou:28.5, mandoob:24.5}},
-  {id:'shv',  ar:'وجبة الجمبري الاقتصادية',   en:'Value Shrimp Meal',          cat:'seafood',    img:M+'economy-shrimp-meal.jpg',     p:{hs:null, keeta:29.5, toyou:28.5, mandoob:24}},
-  {id:'fry',  ar:'بطاطس',                      en:'French Fries',               cat:'sides',      img:M+'fries.jpg',                   p:{hs:7,    keeta:7,    toyou:6.5,  mandoob:4}},
-  {id:'chips',ar:'شيبس البيك',                 en:'Baik Chips',                 cat:'sides',      img:M+'baik-chips.jpg',              p:{hs:7,    keeta:7,    toyou:6.5,  mandoob:4}},
-  {id:'corn', ar:'ذرة',                         en:'Corn on the Cob',            cat:'sides',      img:M+'corn-cob.jpg',                p:{hs:8,    keeta:8,    toyou:7.5,  mandoob:6}},
-  {id:'hms',  ar:'حمص',                         en:'Hummus',                     cat:'sides',      img:M+'hummus.jpg',                  p:{hs:7,    keeta:7,    toyou:6.5,  mandoob:5}},
-  {id:'cls',  ar:'سلطة ملفوف',                 en:'Coleslaw',                   cat:'sides',      img:M+'coleslaw.jpg',                p:{hs:7,    keeta:7,    toyou:6.5,  mandoob:5}},
-  {id:'brd',  ar:'خبز',                         en:'Bread Buns',                 cat:'sides',      img:M+'bread.jpg',                   p:{hs:2,    keeta:2,    toyou:2,    mandoob:1.25}},
-  {id:'gsc',  ar:'صلصة ثوم',                   en:'Garlic Sauce',               cat:'sides',      img:M+'garlic-sauce.jpg',            p:{hs:2,    keeta:2,    toyou:1.5,  mandoob:1}},
-  {id:'csc',  ar:'صلصة كوكتيل',               en:'Cocktail Sauce',             cat:'sides',      img:M+'cocktail-sauce.jpg',          p:{hs:2.5,  keeta:2.5,  toyou:2,    mandoob:1.75}},
-  {id:'mml',  ar:'معمول البيك',                en:'Al Baik Maamoul',            cat:'desserts',   img:'https://images.unsplash.com/photo-1607920591413-4ec007e70023?w=400&q=80', p:{hs:null,keeta:null,toyou:1.5,mandoob:0.5}},
-  {id:'pep',  ar:'بيبسي',                       en:'Pepsi',                      cat:'drinks',     img:'https://images.unsplash.com/photo-1629203851122-3726ecdf080e?w=400&q=80', p:{hs:4.5,keeta:4.5,toyou:4,mandoob:3.5}},
-  {id:'sup',  ar:'سفن أب',                      en:'Seven Up',                   cat:'drinks',     img:M+'7up.jpg',                     p:{hs:4.5,  keeta:4.5,  toyou:4,    mandoob:3.5}},
-  {id:'lpt',  ar:'ليبتون آيس تي',              en:'Lipton Ice Tea',             cat:'drinks',     img:'https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=400&q=80', p:{hs:5.5,keeta:5,toyou:5,mandoob:4}},
-  {id:'wtr',  ar:'ماء',                          en:'Water',                      cat:'drinks',     img:M+'water.jpg',                   p:{hs:2,    keeta:2,    toyou:2,    mandoob:1}}
+  {id:'ch4',  ar:'وجبة دجاج البيك 4 قطع',     en:'Chicken Meal 4pc',           cat:'chicken',    img:M+'chicken-meal-4pc.jpg',        p:{hs:22,   keeta:22,   toyou:22,   mandoob:18,jahez:22.0}},
+  {id:'ch8',  ar:'وجبة دجاج البيك 8 قطع',     en:'Chicken Meal 8pc',           cat:'chicken',    img:M+'chicken-meal-8pc.jpg',        p:{hs:null, keeta:42,   toyou:null, mandoob:35,jahez:null}},
+  {id:'ms10', ar:'وجبة دجاج مسحب 10 قطع',     en:'Nuggets Meal 10pc',          cat:'chicken',    img:M+'chicken-meal-8pc.jpg',        p:{hs:22,   keeta:22,   toyou:22,   mandoob:18,jahez:22.0}},
+  {id:'ms7',  ar:'وجبة دجاج مسحب 7 قطع',      en:'Nuggets Meal 7pc',           cat:'chicken',    img:M+'chicken-meal-4pc.jpg',        p:{hs:20,   keeta:20,   toyou:20,   mandoob:15,jahez:20.5}},
+  {id:'cfb',  ar:'برجر فيليه دجاج',            en:'Chicken Fillet Burger',      cat:'sandwiches', img:M+'chicken-fillet-burger.jpg',   p:{hs:7,    keeta:7,    toyou:6.5,  mandoob:5.5,jahez:6.5}},
+  {id:'cfbh', ar:'برجر فيليه دجاج حراق',       en:'Spicy Fillet Burger',        cat:'sandwiches', img:M+'chicken-fillet-burger.jpg',   p:{hs:7,    keeta:7,    toyou:7,    mandoob:5.5,jahez:6.5}},
+  {id:'bigb', ar:'بيج بيك',                    en:'Big Baik',                   cat:'sandwiches', img:M+'big-baik.jpg',                p:{hs:null, keeta:null, toyou:16,   mandoob:null,jahez:16.0}},
+  {id:'bigbh',ar:'بيج بيك حراق',               en:'Big Baik Spicy',             cat:'sandwiches', img:M+'big-baik.jpg',                p:{hs:17.5, keeta:17.5, toyou:16,   mandoob:null,jahez:16.0}},
+  {id:'bigbc',ar:'بيج بيك بالجبنة',            en:'Big Baik with Cheese',       cat:'sandwiches', img:M+'big-baik-cheese.jpg',         p:{hs:null, keeta:18,   toyou:null, mandoob:16,jahez:null}},
+  {id:'dbl',  ar:'دبل بيك',                    en:'Double Baik',                cat:'sandwiches', img:M+'double-baik.jpg',             p:{hs:10.5, keeta:10.5, toyou:10,   mandoob:9,jahez:10.0}},
+  {id:'cfs',  ar:'ساندويش فيليه الدجاج',       en:'Chicken Fillet Sandwich',    cat:'sandwiches', img:M+'chicken-fillet-sandwich.jpg', p:{hs:10.5, keeta:10.5, toyou:9.5,  mandoob:7.5,jahez:9.5}},
+  {id:'twk',  ar:'طاووق',                      en:'Tawuk',                      cat:'sandwiches', img:M+'tawook.jpg',                  p:{hs:10.5, keeta:10.5, toyou:null, mandoob:7.5,jahez:9.5}},
+  {id:'shwg', ar:'شاورما بصلصة الثوم',         en:'Shawarma Garlic',            cat:'sandwiches', img:M+'shawarma-garlic.jpg',         p:{hs:8.5,  keeta:8.5,  toyou:7.5,  mandoob:6,jahez:7.5}},
+  {id:'supg', ar:'سوبر بيك دجاج مشوي',         en:'Super Baik Grilled',         cat:'sandwiches', img:M+'super-baik-grilled-chicken.jpg', p:{hs:19.5,keeta:19.5,toyou:19.5,mandoob:15,jahez:19.5}},
+  {id:'shs',  ar:'ساندويش جمبري',              en:'Shrimp Sandwich',            cat:'seafood',    img:M+'shrimp-sandwich.jpg',         p:{hs:16,   keeta:16,   toyou:15,   mandoob:11.5,jahez:15.0}},
+  {id:'fss',  ar:'ساندويش فيليه سمك',          en:'Fish Fillet Sandwich',       cat:'seafood',    img:M+'fish-fillet-sandwich.jpg',    p:{hs:12,   keeta:12,   toyou:11,   mandoob:8.5,jahez:11.0}},
+  {id:'fsm',  ar:'وجبة فيليه السمك',           en:'Fish Fillet Meal',           cat:'seafood',    img:M+'fish-fillet-meal.jpg',        p:{hs:null, keeta:30.5, toyou:28.5, mandoob:24.5,jahez:28.5}},
+  {id:'shv',  ar:'وجبة الجمبري الاقتصادية',   en:'Value Shrimp Meal',          cat:'seafood',    img:M+'economy-shrimp-meal.jpg',     p:{hs:null, keeta:29.5, toyou:28.5, mandoob:24,jahez:28.5}},
+  {id:'fry',  ar:'بطاطس',                      en:'French Fries',               cat:'sides',      img:M+'fries.jpg',                   p:{hs:7,    keeta:7,    toyou:6.5,  mandoob:4,jahez:6.0}},
+  {id:'chips',ar:'شيبس البيك',                 en:'Baik Chips',                 cat:'sides',      img:M+'baik-chips.jpg',              p:{hs:7,    keeta:7,    toyou:6.5,  mandoob:4,jahez:6.0}},
+  {id:'corn', ar:'ذرة',                         en:'Corn on the Cob',            cat:'sides',      img:M+'corn-cob.jpg',                p:{hs:8,    keeta:8,    toyou:7.5,  mandoob:6,jahez:7.5}},
+  {id:'hms',  ar:'حمص',                         en:'Hummus',                     cat:'sides',      img:M+'hummus.jpg',                  p:{hs:7,    keeta:7,    toyou:6.5,  mandoob:5,jahez:6.5}},
+  {id:'cls',  ar:'سلطة ملفوف',                 en:'Coleslaw',                   cat:'sides',      img:M+'coleslaw.jpg',                p:{hs:7,    keeta:7,    toyou:6.5,  mandoob:5,jahez:6.5}},
+  {id:'brd',  ar:'خبز',                         en:'Bread Buns',                 cat:'sides',      img:M+'bread.jpg',                   p:{hs:2,    keeta:2,    toyou:2,    mandoob:1.25,jahez:2.0}},
+  {id:'gsc',  ar:'صلصة ثوم',                   en:'Garlic Sauce',               cat:'sides',      img:M+'garlic-sauce.jpg',            p:{hs:2,    keeta:2,    toyou:1.5,  mandoob:1,jahez:1.5}},
+  {id:'csc',  ar:'صلصة كوكتيل',               en:'Cocktail Sauce',             cat:'sides',      img:M+'cocktail-sauce.jpg',          p:{hs:2.5,  keeta:2.5,  toyou:2,    mandoob:1.75,jahez:2.0}},
+  {id:'mml',  ar:'معمول البيك',                en:'Al Baik Maamoul',            cat:'desserts',   img:'https://images.unsplash.com/photo-1607920591413-4ec007e70023?w=400&q=80', p:{hs:null,keeta:null,toyou:1.5,mandoob:0.5,jahez:1.5}},
+  {id:'pep',  ar:'بيبسي',                       en:'Pepsi',                      cat:'drinks',     img:'https://images.unsplash.com/photo-1629203851122-3726ecdf080e?w=400&q=80', p:{hs:4.5,keeta:4.5,toyou:4,mandoob:3.5,jahez:4.0}},
+  {id:'sup',  ar:'سفن أب',                      en:'Seven Up',                   cat:'drinks',     img:M+'7up.jpg',                     p:{hs:4.5,  keeta:4.5,  toyou:4,    mandoob:3.5,jahez:4.0}},
+  {id:'lpt',  ar:'ليبتون آيس تي',              en:'Lipton Ice Tea',             cat:'drinks',     img:'https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=400&q=80', p:{hs:5.5,keeta:5,toyou:5,mandoob:4,jahez:5.0}},
+  {id:'wtr',  ar:'ماء',                          en:'Water',                      cat:'drinks',     img:M+'water.jpg',                   p:{hs:2,    keeta:2,    toyou:2,    mandoob:1,jahez:2.0}}
 ];
 
 var RESTS_FB = [{id:'albaik', ar:'البيك', en:'Al Baik', catAr:'دجاج', catEn:'Chicken', img:'https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?w=600&q=80'}];
@@ -771,6 +773,7 @@ function loadData(){
       pr.keeta=r.keeta?parseFloat(r.keeta):null;
       pr.toyou=r.toyou?parseFloat(r.toyou):null;
       pr.mandoob=r.mandoob?parseFloat(r.mandoob):null;
+      pr.jahez=r.jahez?parseFloat(r.jahez):null;
       MEALS.push({id:r.id,ar:r.name_ar,en:r.name_en,cat:r.category,img:r.image_url,p:pr});
     }
     dataSource='live'; updateDataBadge(); renderRests();
